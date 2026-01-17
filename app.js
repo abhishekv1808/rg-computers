@@ -28,7 +28,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 const cookieParser = require('cookie-parser');
 
-app.use(express.static(path.join(rootDir, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
