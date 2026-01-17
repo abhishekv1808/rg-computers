@@ -208,18 +208,35 @@ exports.getSearch = async (req, res, next) => {
             return res.redirect('/');
         }
 
-        const laptops = await Laptop.find({
+        // Split query into terms
+        const terms = query.split(' ').filter(term => term.trim() !== '');
+
+        // Build regex for each term
+        const regexTerms = terms.map(term => new RegExp(term, 'i'));
+
+        // Construct query: Each term must match at least one field
+        const searchConditions = regexTerms.map(regex => ({
             $or: [
-                { brand: { $regex: query, $options: 'i' } },
-                { model: { $regex: query, $options: 'i' } },
-                { category: { $regex: query, $options: 'i' } },
-                { 'specifications.processor': { $regex: query, $options: 'i' } }
+                { brand: regex },
+                { model: regex },
+                { category: regex },
+                { 'specifications.processor': regex },
+                { 'specifications.ram': regex },
+                { 'specifications.storage': regex },
+                { 'specifications.display': regex },
+                { 'specifications.graphics': regex },
+                { 'specifications.os': regex }
             ]
+        }));
+
+        const laptops = await Laptop.find({
+            $and: searchConditions
         });
 
         res.render('../views/user/laptops', {
             pageTitle: `Search Results for "${query}"`,
-            laptops: laptops
+            laptops: laptops,
+            searchQuery: query
         });
     } catch (err) {
         console.log(err);

@@ -2,6 +2,8 @@ const Laptop = require('../models/laptop');
 const Admin = require('../models/admin');
 const bcrypt = require('bcryptjs');
 
+const jwt = require('jsonwebtoken');
+
 exports.getLogin = (req, res, next) => {
     res.render('admin/login', {
         pageTitle: 'Admin Login',
@@ -23,13 +25,22 @@ exports.postLogin = async (req, res, next) => {
         }
         const doMatch = await bcrypt.compare(password, admin.password);
         if (doMatch) {
-            req.session.isLoggedIn = true;
-            req.session.adminId = admin._id.toString();
-            return req.session.save(err => {
-                if (err) console.log('Admin Session Save Error:', err);
-                console.log('Admin Logged In Successfully');
-                res.redirect('/admin/dashboard');
+            // Generate JWT
+            const token = jwt.sign(
+                { adminId: admin._id.toString(), email: admin.email },
+                process.env.JWT_SECRET,
+                { expiresIn: '1h' }
+            );
+
+            // Set Cookie
+            res.cookie('token', token, {
+                httpOnly: true,
+                // secure: true, // Enable in production with HTTPS
+                maxAge: 3600000 // 1 hour
             });
+
+            console.log('Admin Logged In Successfully (JWT)');
+            return res.redirect('/admin/dashboard');
         }
         res.render('admin/login', {
             pageTitle: 'Admin Login',
@@ -42,10 +53,8 @@ exports.postLogin = async (req, res, next) => {
 };
 
 exports.postLogout = (req, res, next) => {
-    req.session.destroy(err => {
-        console.log(err);
-        res.redirect('/admin/login');
-    });
+    res.clearCookie('token');
+    res.redirect('/admin/login');
 };
 
 exports.getDashboard = async (req, res, next) => {

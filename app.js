@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const Cart = require('./models/cart');
+require('dotenv').config();
 
 const rootDir = require('./utils/mainUtils');
 const userRouter = require('./routes/userRouter');
@@ -14,7 +15,7 @@ const Blog = require('./models/blog');
 
 const app = express();
 
-const mongodbURL = 'mongodb+srv://abhishekv1808:' + encodeURIComponent('Grow@$@2025') + '@aribnb.xvmlcnz.mongodb.net/simtech?retryWrites=true&w=majority&appName=aribnb';
+const mongodbURL = process.env.MONGODB_URI;
 
 const store = new MongoDBStore({
     uri: mongodbURL,
@@ -25,12 +26,15 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 
+const cookieParser = require('cookie-parser');
+
 app.use(express.static(path.join(rootDir, 'public')));
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(
     session({
-        secret: 'my secret',
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: store

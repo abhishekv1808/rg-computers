@@ -79,22 +79,22 @@
                                     </h3>
 
                                     <!-- Specs -->
-                                    <div class="flex flex-wrap gap-2 mb-3">
+                                    <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
                                         <% if(laptop.specifications.processor) { %>
                                             <span
-                                                class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                 <%= laptop.specifications.processor %>
                                             </span>
                                             <% } %>
                                                 <% if(laptop.specifications.ram) { %>
                                                     <span
-                                                        class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                        class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                         <%= laptop.specifications.ram %>
                                                     </span>
                                                     <% } %>
                                                         <% if(laptop.specifications.storage) { %>
                                                             <span
-                                                                class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                                class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                                 <%= laptop.specifications.storage %>
                                                             </span>
                                                             <% } %>

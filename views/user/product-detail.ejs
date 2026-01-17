@@ -152,19 +152,25 @@
 
                                 <!-- Action Buttons -->
                                 <div class="flex gap-4 mb-8">
-                                    <form action="/cart" method="POST" class="flex-1">
-                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
-                                        <button type="submit" class="w-full flex items-center justify-center gap-2 border border-black rounded-lg py-3 font-bold hover:bg-gray-50 transition-colors">
-                                            <i class="fas fa-shopping-cart"></i>
-                                            Add to Cart
+                                    <% if (laptop.stockQuantity === 0 || laptop.status === 'Out of Stock') { %>
+                                        <button disabled class="w-full bg-gray-300 text-gray-500 rounded-lg py-3 font-bold cursor-not-allowed">
+                                            Out of Stock
                                         </button>
-                                    </form>
-                                    <form action="/cart" method="POST" class="flex-1">
-                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
-                                        <button type="submit" class="w-full bg-black text-white rounded-lg py-3 font-bold hover:bg-gray-800 transition-colors">
-                                            Buy Now
-                                        </button>
-                                    </form>
+                                    <% } else { %>
+                                        <form action="/cart" method="POST" class="flex-1">
+                                            <input type="hidden" name="productId" value="<%= laptop._id %>">
+                                            <button type="submit" class="w-full flex items-center justify-center gap-2 border border-black rounded-lg py-3 font-bold hover:bg-gray-50 transition-colors">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Add to Cart
+                                            </button>
+                                        </form>
+                                        <form action="/cart" method="POST" class="flex-1">
+                                            <input type="hidden" name="productId" value="<%= laptop._id %>">
+                                            <button type="submit" class="w-full bg-black text-white rounded-lg py-3 font-bold hover:bg-gray-800 transition-colors">
+                                                Buy Now
+                                            </button>
+                                        </form>
+                                    <% } %>
                                 </div>
 
                                 <div class="space-y-6">
@@ -314,18 +320,18 @@
                                         </h3>
 
                                         <!-- Specs -->
-                                        <div class="flex flex-wrap gap-2 mb-3">
+                                        <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
                                             <span
-                                                class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                 <%= item.specifications.ram %>
                                             </span>
                                             <span
-                                                class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                 <%= item.specifications.storage %>
                                             </span>
                                             <% if(item.specifications.processor) { %>
                                                 <span
-                                                    class="bg-gray-100 text-gray-600 text-[10px] font-medium px-2 py-1 rounded">
+                                                    class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
                                                     <%= item.specifications.processor %>
                                                 </span>
                                                 <% } %>

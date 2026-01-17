@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const adminController = require('../controllers/adminController');
-const isAuth = require('../middleware/is-auth');
+const isAuth = require('../middleware/is-auth-jwt');
 const { parser } = require('../utils/cloudinary');
 
 const router = express.Router();
