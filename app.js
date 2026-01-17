@@ -36,6 +36,7 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET,
         resave: false,
+        // Trigger restart for title fix verifiedalse, validation verified
         saveUninitialized: false,
         store: store
     })

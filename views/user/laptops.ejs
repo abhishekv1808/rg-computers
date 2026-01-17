@@ -175,7 +175,7 @@
                                         Price Range
                                     </button>
                                     <div class="px-2">
-                                        <input type="range" id="price-range" min="10000" max="250000" step="5000"
+                                        <input type="range" id="price-range" min="10000" max="250000" step="5000" value="250000"
                                             class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-cyan-500">
                                         <div class="flex justify-between mt-2 text-sm text-gray-600 font-bold">
                                             <span>&#8377;10k</span>
@@ -260,8 +260,7 @@
                                             <!-- Title -->
                                             <h3
                                                 class="font-bold text-gray-900 text-sm leading-tight mb-2 line-clamp-2 min-h-[40px]">
-                                                <%= laptop.brand %>
-                                                    <%= laptop.model %> (<%= laptop.specifications.processor %>)
+                                                <%= laptop.model %> (<%= laptop.specifications.processor %>)
                                             </h3>
 
                                             <!-- Specs -->

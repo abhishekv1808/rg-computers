@@ -602,6 +602,21 @@
                 }
             }
         </style>
+
+        <script>
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    const mrp = parseFloat(document.getElementById('mrp').value);
+                    const price = parseFloat(document.getElementById('price').value);
+
+                    if (price > mrp) {
+                        e.preventDefault();
+                        alert('Validation Error: Selling Price cannot be greater than MRP.');
+                    }
+                });
+            }
+        </script>
     </body>
 
     </html>

@@ -97,6 +97,11 @@ exports.postAddLaptop = async (req, res, next) => {
     const category = req.body.category;
     const price = req.body.price;
     const mrp = req.body.mrp;
+
+    if (parseFloat(price) > parseFloat(mrp)) {
+        return res.send('<script>alert("Validation Error: Selling Price cannot be greater than MRP."); window.history.back();</script>');
+    }
+
     const description = req.body.description;
 
     // Handle Cloudinary Uploads
@@ -154,6 +159,11 @@ exports.postAddMonitor = async (req, res, next) => {
     const category = 'Monitor'; // Explicitly set
     const price = req.body.price;
     const mrp = req.body.mrp;
+
+    if (parseFloat(price) > parseFloat(mrp)) {
+        return res.send('<script>alert("Validation Error: Selling Price cannot be greater than MRP."); window.history.back();</script>');
+    }
+
     const description = req.body.description;
 
     // Handle Cloudinary Uploads
@@ -201,6 +211,11 @@ exports.postEditMonitor = async (req, res, next) => {
     // Category remains 'Monitor'
     const updatedPrice = req.body.price;
     const updatedMrp = req.body.mrp;
+
+    if (parseFloat(updatedPrice) > parseFloat(updatedMrp)) {
+        return res.send('<script>alert("Validation Error: Selling Price cannot be greater than MRP."); window.history.back();</script>');
+    }
+
     const updatedDesc = req.body.description;
 
     let newImageUrls = [];
@@ -286,6 +301,11 @@ exports.postEditLaptop = async (req, res, next) => {
     const updatedCategory = req.body.category;
     const updatedPrice = req.body.price;
     const updatedMrp = req.body.mrp;
+
+    if (parseFloat(updatedPrice) > parseFloat(updatedMrp)) {
+        return res.send('<script>alert("Validation Error: Selling Price cannot be greater than MRP."); window.history.back();</script>');
+    }
+
     const updatedDesc = req.body.description;
 
     // Handle New Uploads
