@@ -9,7 +9,7 @@ exports.getHome = async (req, res, next) => {
         const desktops = await Laptop.find({ category: 'Desktop' }).sort({ createdAt: -1 }).limit(4);
         const blogs = await Blog.find().sort({ createdAt: -1 }).limit(3);
 
-        res.render('../views/user/home', {
+        res.render('user/home', {
             pageTitle: 'Home',
             laptops: laptops,
             monitors: monitors,
@@ -18,7 +18,7 @@ exports.getHome = async (req, res, next) => {
         });
     } catch (err) {
         console.log(err);
-        res.render('../views/user/home', {
+        res.render('user/home', {
             pageTitle: 'Home',
             laptops: [],
             monitors: [],
@@ -31,7 +31,7 @@ exports.getHome = async (req, res, next) => {
 exports.getLaptops = async (req, res, next) => {
     try {
         const laptops = await Laptop.find();
-        res.render('../views/user/laptops', {
+        res.render('user/laptops', {
             pageTitle: 'Laptops',
             laptops: laptops
         });
@@ -42,15 +42,15 @@ exports.getLaptops = async (req, res, next) => {
 }
 
 exports.getStoreLocator = (req, res, next) => {
-    res.render('../views/user/store-locator', { pageTitle: 'Stores' });
+    res.render('user/store-locator', { pageTitle: 'Stores' });
 }
 
 exports.getAboutUs = (req, res, next) => {
-    res.render('../views/user/aboutUs', { pageTitle: 'About Us' });
+    res.render('user/aboutUs', { pageTitle: 'About Us' });
 }
 
 exports.getContactUs = (req, res, next) => {
-    res.render('../views/user/contact-us', { pageTitle: 'Contact Us' });
+    res.render('user/contact-us', { pageTitle: 'Contact Us' });
 }
 
 exports.getLaptopsByBrand = async (req, res, next) => {
@@ -60,7 +60,7 @@ exports.getLaptopsByBrand = async (req, res, next) => {
             brand: { $regex: new RegExp("^" + brandName + "$", "i") }
         });
 
-        res.render('../views/user/brand-laptops', {
+        res.render('user/brand-laptops', {
             pageTitle: `${brandName} Laptops`,
             laptops: laptops,
             brandName: brandName
@@ -88,7 +88,7 @@ exports.getMonitorDetail = async (req, res, next) => {
         const discount = monitor.mrp - monitor.price;
         const discountPercent = Math.round((discount / monitor.mrp) * 100);
 
-        res.render('../views/user/monitor-detail', {
+        res.render('user/monitor-detail', {
             pageTitle: `${monitor.brand} ${monitor.model}`,
             monitor: monitor,
             similarMonitors: similarMonitors,
@@ -112,7 +112,7 @@ exports.getBlogDetail = async (req, res, next) => {
 
         const recentBlogs = await Blog.find({ _id: { $ne: blogId } }).sort({ createdAt: -1 }).limit(3);
 
-        res.render('../views/user/blog-detail', {
+        res.render('user/blog-detail', {
             pageTitle: blog.title,
             blog: blog,
             recentBlogs: recentBlogs
@@ -147,7 +147,7 @@ exports.getProductDetail = async (req, res, next) => {
         const discount = laptop.mrp - laptop.price;
         const discountPercent = Math.round((discount / laptop.mrp) * 100);
 
-        res.render('../views/user/product-detail', {
+        res.render('user/product-detail', {
             pageTitle: `${laptop.brand} ${laptop.model} | RG Computers`,
             laptop: laptop,
             similarLaptops: similarLaptops,
@@ -165,7 +165,7 @@ exports.getProductDetail = async (req, res, next) => {
 exports.getCompareLaptops = async (req, res, next) => {
     try {
         const laptops = await Laptop.find();
-        res.render('../views/user/compare-laptops', {
+        res.render('user/compare-laptops', {
             pageTitle: 'Compare Laptops',
             laptops: laptops
         });
@@ -178,7 +178,7 @@ exports.getCompareLaptops = async (req, res, next) => {
 exports.getSmartphones = async (req, res, next) => {
     try {
         const smartphones = await Laptop.find({ category: 'smartphone' });
-        res.render('../views/user/smartphones', {
+        res.render('user/smartphones', {
             pageTitle: 'Smartphones',
             smartphones: smartphones
         });
@@ -191,7 +191,7 @@ exports.getSmartphones = async (req, res, next) => {
 exports.getMonitors = async (req, res, next) => {
     try {
         const monitors = await Laptop.find({ category: 'Monitor' });
-        res.render('../views/user/monitors', {
+        res.render('user/monitors', {
             pageTitle: 'Monitors',
             monitors: monitors
         });
@@ -233,7 +233,7 @@ exports.getSearch = async (req, res, next) => {
             $and: searchConditions
         });
 
-        res.render('../views/user/laptops', {
+        res.render('user/laptops', {
             pageTitle: `Search Results for "${query}"`,
             laptops: laptops,
             searchQuery: query
@@ -272,7 +272,7 @@ exports.getCart = async (req, res, next) => {
         // Fetch recommendations (e.g., 4 random laptops)
         const recommendations = await Laptop.aggregate([{ $sample: { size: 4 } }]);
 
-        res.render('../views/user/cart', {
+        res.render('user/cart', {
             pageTitle: 'Your Cart',
             products: cart.products,
             totalPrice: cart.totalPrice,

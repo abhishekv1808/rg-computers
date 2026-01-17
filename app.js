@@ -189,3 +189,5 @@ mongoose.connect(mongodbURL).then(async (result) => {
     console.log("Connection failed", err);
 });
 
+module.exports = app;
+
