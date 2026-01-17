@@ -1,293 +1,430 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-<header id="header-wrapper" class="fixed top-0 left-0 w-full z-[100] transition-all">
-    <!-- Main Header -->
-    <nav class="bg-white border-b border-gray-100 backdrop-blur-md bg-white/95 relative z-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 md:h-20 gap-4">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="/" class="flex items-center space-x-2 group">
-                        <img src="/images/RgComputers-logo.png" alt="RG Computers"
-                            class="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
-                    </form>
-                </div>
+<header
+  id="header-wrapper"
+  class="fixed top-0 left-0 w-full z-[100] transition-all"
+>
+  <!-- Main Header -->
+  <nav
+    class="bg-white border-b border-gray-100 backdrop-blur-md bg-white/95 relative z-20"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20 gap-4">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href="/" class="flex items-center space-x-2 group">
+            <img
+              src="/images/RgComputers-logo.png"
+              alt="RG Computers"
+              class="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </a>
+        </div>
 
-                <!-- Right Actions -->
-                <div class="flex items-center gap-3 md:gap-6">
-                    <!-- Mobile Search Icon -->
-                    <button
-                        class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 hover:bg-gray-50">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
+        <!-- Desktop Search Bar -->
+        <div class="hidden md:flex flex-1 max-w-2xl mx-8">
+          <form action="/search" method="GET" class="w-full relative group">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search for laptops, monitors..."
+              value="<%= locals.searchQuery || '' %>"
+              class="w-full pl-5 pr-12 py-2.5 bg-gray-50 border border-gray-200 rounded-full outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 transition-all text-sm font-medium text-gray-700 placeholder-gray-400 group-hover:bg-white group-hover:shadow-md"
+            />
+            <button
+              type="submit"
+              class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center rounded-full bg-cyan-500 text-white hover:bg-cyan-600 transition-colors shadow-sm"
+            >
+              <i class="fas fa-search text-xs"></i>
+            </button>
+          </form>
+        </div>
 
-                    <!-- Desktop Login -->
-                    <a href="/admin/login"
-                        class="hidden md:flex items-center gap-2 text-gray-700 hover:text-cyan-600 font-bold text-sm transition-colors group">
-                        <div
-                            class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-cyan-50 transition-colors">
-                            <i class="fas fa-user text-sm"></i>
-                        </div>
-                        <span>Login</span>
-                    </a>
-
-                    <!-- Cart -->
-                    <a href="/cart"
-                        class="text-gray-700 hover:text-cyan-600 font-bold text-sm transition-colors relative group">
-                        <div
-                            class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors">
-                            <i class="fas fa-shopping-cart text-xl"></i>
-                            <% if (locals.cartItemCount && locals.cartItemCount> 0) { %>
-                                <span
-                                    class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white transform group-hover:scale-110 transition-transform">
-                                    <%= cartItemCount %>
-                                </span>
-                                <% } %>
-                        </div>
-                    </a>
-
-                    <!-- Mobile Menu Toggle -->
-                    <button id="menu-open"
-                        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-bars-staggered text-lg"></i>
-                    </button>
-                </div>
+        <!-- Right Actions -->
+        <div class="flex items-center gap-3 md:gap-6">
+          <!-- Mobile Search Icon -->
+          <button
+            class="md:hidden w-10 h-10 flex items-center justify-center rounded-full text-gray-600 hover:bg-gray-50"
+          >
+            <i class="fas fa-search text-xl"></i>
+          </button>
+          <!-- Desktop Login -->
+          <a
+            href="/admin/login"
+            class="hidden md:flex items-center gap-2 text-gray-700 hover:text-cyan-600 font-bold text-sm transition-colors group"
+          >
+            <div
+              class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-cyan-50 transition-colors"
+            >
+              <i class="fas fa-user text-sm"></i>
             </div>
+            <span>Login</span>
+          </a>
+
+          <!-- Cart -->
+          <a
+            href="/cart"
+            class="text-gray-700 hover:text-cyan-600 font-bold text-sm transition-colors relative group"
+          >
+            <div
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-50 transition-colors"
+            >
+              <i class="fas fa-shopping-cart text-xl"></i>
+              <% if (locals.cartItemCount && locals.cartItemCount> 0) { %>
+              <span
+                class="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white transform group-hover:scale-110 transition-transform"
+              >
+                <%= cartItemCount %>
+              </span>
+              <% } %>
+            </div>
+          </a>
+
+          <!-- Mobile Menu Toggle -->
+          <button
+            id="menu-open"
+            class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors"
+          >
+            <i class="fas fa-bars-staggered text-lg"></i>
+          </button>
         </div>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Mini Nav (Categories) -->
-    <nav id="mini-nav"
-        class="bg-white border-b border-gray-100 overflow-x-auto md:overflow-visible no-scrollbar shadow-sm relative z-10 hidden md:block">
-        <div class="max-w-7xl mx-auto px-4">
-            <ul class="flex items-center justify-center space-x-8 h-11 whitespace-nowrap">
-                <li class="nav-item group relative h-full flex items-center">
-                    <a href="#"
-                        class="flex items-center text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors">
-                        All Categories <i
-                            class="fas fa-chevron-down ml-1 text-[10px] opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
-                    </a>
-                    <!-- Dropdown -->
-                    <div
-                        class="absolute top-full left-0 pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-2 space-y-1">
-                            <a href="/laptops"
-                                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium">
-                                <i class="fas fa-laptop mr-2 text-cyan-500/50"></i> Laptops
-                            </a>
-                            <a href="#"
-                                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium">
-                                <i class="fas fa-desktop mr-2 text-cyan-500/50"></i> Desktops
-                            </a>
-                            <a href="#"
-                                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium">
-                                <i class="fas fa-headset mr-2 text-cyan-500/50"></i> Accessories
-                            </a>
-                        </div>
-                    </div>
-                </li>
+  <!-- Mini Nav (Categories) -->
+  <nav
+    id="mini-nav"
+    class="bg-white border-b border-gray-100 overflow-x-auto md:overflow-visible no-scrollbar shadow-sm relative z-10 hidden md:block"
+  >
+    <div class="max-w-7xl mx-auto px-4">
+      <ul
+        class="flex items-center justify-center space-x-8 h-11 whitespace-nowrap"
+      >
+        <li class="nav-item group relative h-full flex items-center">
+          <a
+            href="#"
+            class="flex items-center text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors"
+          >
+            All Categories
+            <i
+              class="fas fa-chevron-down ml-1 text-[10px] opacity-50 group-hover:rotate-180 transition-transform duration-300"
+            ></i>
+          </a>
+          <!-- Dropdown -->
+          <div
+            class="absolute top-full left-0 pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50"
+          >
+            <div
+              class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-2 space-y-1"
+            >
+              <a
+                href="/laptops"
+                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium"
+              >
+                <i class="fas fa-laptop mr-2 text-cyan-500/50"></i> Laptops
+              </a>
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium"
+              >
+                <i class="fas fa-desktop mr-2 text-cyan-500/50"></i> Desktops
+              </a>
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium"
+              >
+                <i class="fas fa-headset mr-2 text-cyan-500/50"></i> Accessories
+              </a>
+            </div>
+          </div>
+        </li>
 
-                <li class="nav-item group relative h-full flex items-center">
-                    <a href="#"
-                        class="flex items-center text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors">
-                        Buy Refurbished <i
-                            class="fas fa-chevron-down ml-1 text-[10px] opacity-50 group-hover:rotate-180 transition-transform duration-300"></i>
-                    </a>
-                    <div
-                        class="absolute top-full left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
-                        <div class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-2 space-y-1">
-                            <a href="#"
-                                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium">Windows
-                                Laptops</a>
-                            <a href="#"
-                                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium">MacBooks</a>
-                        </div>
-                    </div>
-                </li>
+        <li class="nav-item group relative h-full flex items-center">
+          <a
+            href="#"
+            class="flex items-center text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors"
+          >
+            Buy Refurbished
+            <i
+              class="fas fa-chevron-down ml-1 text-[10px] opacity-50 group-hover:rotate-180 transition-transform duration-300"
+            ></i>
+          </a>
+          <div
+            class="absolute top-full left-0 pt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50"
+          >
+            <div
+              class="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden p-2 space-y-1"
+            >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium"
+                >Windows Laptops</a
+              >
+              <a
+                href="#"
+                class="block px-3 py-2 rounded-lg text-sm text-gray-600 hover:bg-cyan-50 hover:text-cyan-600 transition-colors font-medium"
+                >MacBooks</a
+              >
+            </div>
+          </div>
+        </li>
 
-                <li class="nav-item h-full flex items-center">
-                    <a href="/compare-laptops"
-                        class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors">Compare</a>
-                </li>
-                <li class="nav-item h-full flex items-center">
-                    <a href="/store-locator"
-                        class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors">Store
-                        Locator</a>
-                </li>
-                <li class="nav-item h-full flex items-center">
-                    <a href="/contact-us"
-                        class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors">Contact Us</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <li class="nav-item h-full flex items-center">
+          <a
+            href="/compare-laptops"
+            class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors"
+            >Compare</a
+          >
+        </li>
+        <li class="nav-item h-full flex items-center">
+          <a
+            href="/store-locator"
+            class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors"
+            >Store Locator</a
+          >
+        </li>
+        <li class="nav-item h-full flex items-center">
+          <a
+            href="/contact-us"
+            class="text-[13px] font-bold text-gray-700 hover:text-cyan-500 transition-colors"
+            >Contact Us</a
+          >
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
 
 <!-- Spacer for Fixed Header -->
 <div class="h-16 md:h-32"></div>
 
 <!-- Mobile Sidebar Overlay -->
-<div id="mobile-overlay"
-    class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[110] hidden opacity-0 transition-opacity duration-300"></div>
+<div
+  id="mobile-overlay"
+  class="fixed inset-0 bg-black/40 backdrop-blur-sm z-[110] hidden opacity-0 transition-opacity duration-300"
+></div>
 
 <!-- Mobile Sidebar -->
-<aside id="mobile-sidebar"
-    class="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white z-[120] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out">
-    <div class="flex flex-col h-full">
-        <div class="p-5 flex justify-between items-center border-b border-gray-100">
-            <span class="text-lg font-bold text-gray-900">Menu</span>
-            <button id="menu-close"
-                class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-
-        <div class="p-5 space-y-6 overflow-y-auto flex-1">
-            <!-- Mobile Search -->
-            <form action="/search" method="GET" class="relative">
-                <button type="submit"
-                    class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 bg-transparent border-none">
-                    <i class="fas fa-search"></i>
-                </button>
-                <input type="text" name="q" placeholder="Search products..."
-                    class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
-            </form>
-
-            <!-- Mobile Links -->
-            <nav class="flex flex-col space-y-4">
-                <a href="/laptops"
-                    class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors">
-                    Buy Refurbished <i class="fas fa-chevron-right text-sm text-gray-300"></i>
-                </a>
-                <a href="#"
-                    class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors">
-                    Sell Your Laptop <i class="fas fa-chevron-right text-sm text-gray-300"></i>
-                </a>
-                <a href="#"
-                    class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors">
-                    Repair Center <i class="fas fa-chevron-right text-sm text-gray-300"></i>
-                </a>
-                <div class="h-px bg-gray-100 my-2"></div>
-                <a href="/about-us"
-                    class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors">About Us</a>
-                <a href="/contact-us"
-                    class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors">Contact
-                    Support</a>
-                <a href="/store-locator"
-                    class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors">Store Locator</a>
-            </nav>
-        </div>
-
-        <div class="p-5 bg-gray-50 border-t border-gray-100">
-            <p class="text-xs text-gray-500 mb-2 uppercase tracking-wider font-bold">Location</p>
-            <button
-                class="flex items-center font-bold text-gray-800 w-full justify-between bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
-                <span class="flex items-center"><i class="fas fa-location-dot text-cyan-500 mr-2"></i> Gurgaon</span>
-                <span class="text-xs text-cyan-600 font-medium">Change</span>
-            </button>
-        </div>
+<aside
+  id="mobile-sidebar"
+  class="fixed top-0 right-0 h-full w-[85%] max-w-sm bg-white z-[120] shadow-2xl transform translate-x-full transition-transform duration-300 ease-out"
+>
+  <div class="flex flex-col h-full">
+    <div class="p-5 flex justify-between items-center border-b border-gray-100">
+      <span class="text-lg font-bold text-gray-900">Menu</span>
+      <button
+        id="menu-close"
+        class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 transition-colors"
+      >
+        <i class="fas fa-times"></i>
+      </button>
     </div>
+
+    <div class="p-5 space-y-6 overflow-y-auto flex-1">
+      <!-- Mobile Search -->
+      <form action="/search" method="GET" class="relative">
+        <button
+          type="submit"
+          class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 bg-transparent border-none"
+        >
+          <i class="fas fa-search"></i>
+        </button>
+        <input
+          type="text"
+          name="q"
+          placeholder="Search products..."
+          class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+        />
+      </form>
+
+      <!-- Mobile Links -->
+      <nav class="flex flex-col space-y-4">
+        <a
+          href="/laptops"
+          class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors"
+        >
+          Buy Refurbished
+          <i class="fas fa-chevron-right text-sm text-gray-300"></i>
+        </a>
+        <a
+          href="#"
+          class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors"
+        >
+          Sell Your Laptop
+          <i class="fas fa-chevron-right text-sm text-gray-300"></i>
+        </a>
+        <a
+          href="#"
+          class="flex items-center justify-between text-lg font-bold text-gray-800 hover:text-cyan-600 transition-colors"
+        >
+          Repair Center
+          <i class="fas fa-chevron-right text-sm text-gray-300"></i>
+        </a>
+        <div class="h-px bg-gray-100 my-2"></div>
+        <a
+          href="/about-us"
+          class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors"
+          >About Us</a
+        >
+        <a
+          href="/contact-us"
+          class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors"
+          >Contact Support</a
+        >
+        <a
+          href="/store-locator"
+          class="text-base font-medium text-gray-600 hover:text-cyan-600 transition-colors"
+          >Store Locator</a
+        >
+      </nav>
+    </div>
+
+    <div class="p-5 bg-gray-50 border-t border-gray-100">
+      <p class="text-xs text-gray-500 mb-2 uppercase tracking-wider font-bold">
+        Location
+      </p>
+      <button
+        class="flex items-center font-bold text-gray-800 w-full justify-between bg-white p-3 rounded-lg border border-gray-200 shadow-sm"
+      >
+        <span class="flex items-center"
+          ><i class="fas fa-location-dot text-cyan-500 mr-2"></i> Gurgaon</span
+        >
+        <span class="text-xs text-cyan-600 font-medium">Change</span>
+      </button>
+    </div>
+  </div>
 </aside>
 
 <!-- Mobile Bottom Navigation -->
 <div
-    class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-[90] pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-    <div class="grid grid-cols-4 h-16">
-        <a href="/"
-            class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group">
-            <i class="fas fa-home text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-            <span class="text-[10px] font-medium">Home</span>
-        </a>
-        <a href="#" onclick="document.getElementById('menu-open').click(); return false;"
-            class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group">
-            <i class="fas fa-th-large text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-            <span class="text-[10px] font-medium">Menu</span>
-        </a>
-        <a href="/cart"
-            class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group relative">
-            <div class="relative">
-                <i class="fas fa-shopping-cart text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-                <% if (locals.cartItemCount && locals.cartItemCount> 0) { %>
-                    <span
-                        class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-bounce">
-                        <%= cartItemCount %>
-                    </span>
-                    <% } %>
-            </div>
-            <span class="text-[10px] font-medium">Cart</span>
-        </a>
-        <a href="/admin/login"
-            class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group">
-            <i class="fas fa-user text-xl mb-1 group-hover:scale-110 transition-transform"></i>
-            <span class="text-[10px] font-medium">Account</span>
-        </a>
-    </div>
+  class="md:hidden fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 z-[90] pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]"
+>
+  <div class="grid grid-cols-4 h-16">
+    <a
+      href="/"
+      class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group"
+    >
+      <i
+        class="fas fa-home text-xl mb-1 group-hover:scale-110 transition-transform"
+      ></i>
+      <span class="text-[10px] font-medium">Home</span>
+    </a>
+    <a
+      href="#"
+      onclick="document.getElementById('menu-open').click(); return false;"
+      class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group"
+    >
+      <i
+        class="fas fa-th-large text-xl mb-1 group-hover:scale-110 transition-transform"
+      ></i>
+      <span class="text-[10px] font-medium">Menu</span>
+    </a>
+    <a
+      href="/cart"
+      class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group relative"
+    >
+      <div class="relative">
+        <i
+          class="fas fa-shopping-cart text-xl mb-1 group-hover:scale-110 transition-transform"
+        ></i>
+        <% if (locals.cartItemCount && locals.cartItemCount> 0) { %>
+        <span
+          class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center animate-bounce"
+        >
+          <%= cartItemCount %>
+        </span>
+        <% } %>
+      </div>
+      <span class="text-[10px] font-medium">Cart</span>
+    </a>
+    <a
+      href="/admin/login"
+      class="flex flex-col items-center justify-center text-gray-500 hover:text-cyan-600 active:text-cyan-600 transition-colors group"
+    >
+      <i
+        class="fas fa-user text-xl mb-1 group-hover:scale-110 transition-transform"
+      ></i>
+      <span class="text-[10px] font-medium">Account</span>
+    </a>
+  </div>
 </div>
 
 <!-- Spacer for Bottom Nav -->
 <div class="h-16 md:hidden"></div>
 
 <style>
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-    .no-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // GSAP Registration
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-        }
+  document.addEventListener("DOMContentLoaded", () => {
+    // GSAP Registration
+    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
+    }
 
-        const header = document.getElementById('header-wrapper');
-        const menuOpen = document.getElementById('menu-open');
-        const menuClose = document.getElementById('menu-close');
-        const mobileOverlay = document.getElementById('mobile-overlay');
-        const mobileSidebar = document.getElementById('mobile-sidebar');
+    const header = document.getElementById("header-wrapper");
+    const menuOpen = document.getElementById("menu-open");
+    const menuClose = document.getElementById("menu-close");
+    const mobileOverlay = document.getElementById("mobile-overlay");
+    const mobileSidebar = document.getElementById("mobile-sidebar");
 
-        // Sidebar Toggle Logic
-        function openSidebar() {
-            mobileOverlay.classList.remove('hidden');
-            // Force reflow
-            void mobileOverlay.offsetWidth;
-            mobileOverlay.classList.remove('opacity-0');
-            mobileSidebar.classList.remove('translate-x-full');
-        }
+    // Sidebar Toggle Logic
+    function openSidebar() {
+      mobileOverlay.classList.remove("hidden");
+      // Force reflow
+      void mobileOverlay.offsetWidth;
+      mobileOverlay.classList.remove("opacity-0");
+      mobileSidebar.classList.remove("translate-x-full");
+    }
 
-        function closeSidebar() {
-            mobileOverlay.classList.add('opacity-0');
-            mobileSidebar.classList.add('translate-x-full');
-            setTimeout(() => {
-                mobileOverlay.classList.add('hidden');
-            }, 300);
-        }
+    function closeSidebar() {
+      mobileOverlay.classList.add("opacity-0");
+      mobileSidebar.classList.add("translate-x-full");
+      setTimeout(() => {
+        mobileOverlay.classList.add("hidden");
+      }, 300);
+    }
 
-        if (menuOpen) menuOpen.addEventListener('click', (e) => { e.preventDefault(); openSidebar(); });
-        if (menuClose) menuClose.addEventListener('click', (e) => { e.preventDefault(); closeSidebar(); });
-        if (mobileOverlay) mobileOverlay.addEventListener('click', closeSidebar);
+    if (menuOpen)
+      menuOpen.addEventListener("click", (e) => {
+        e.preventDefault();
+        openSidebar();
+      });
+    if (menuClose)
+      menuClose.addEventListener("click", (e) => {
+        e.preventDefault();
+        closeSidebar();
+      });
+    if (mobileOverlay) mobileOverlay.addEventListener("click", closeSidebar);
 
-        // Smart Header Hide/Show
-        let lastScroll = 0;
-        if (header) {
-            window.addEventListener('scroll', () => {
-                const currentScroll = window.scrollY;
+    // Smart Header Hide/Show
+    let lastScroll = 0;
+    if (header) {
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.scrollY;
 
-                // Shadow
-                if (currentScroll > 10) header.classList.add('shadow-md');
-                else header.classList.remove('shadow-md');
+        // Shadow
+        if (currentScroll > 10) header.classList.add("shadow-md");
+        else header.classList.remove("shadow-md");
 
-                // Hide/Show (Desktop Only usually, but good for mobile too if we want)
-                // For now, keeping it simple: always show on mobile, smart hide on desktop if needed.
-                // Actually, let's keep it sticky always for now as requested for "app-like" feel.
-            });
-        }
-    });
+        // Hide/Show (Desktop Only usually, but good for mobile too if we want)
+        // For now, keeping it simple: always show on mobile, smart hide on desktop if needed.
+        // Actually, let's keep it sticky always for now as requested for "app-like" feel.
+      });
+    }
+  });
 </script>
