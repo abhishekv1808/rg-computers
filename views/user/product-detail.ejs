@@ -98,13 +98,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Product Description (Moved to Left Column) -->
-                                <div class="mt-8 pt-6 border-t border-gray-100">
-                                    <h3 class="font-bold text-gray-900 mb-3">Product Description</h3>
-                                    <p class="text-gray-600 text-sm leading-relaxed">
-                                        <%= laptop.description %>
-                                    </p>
-                                </div>
+
                             </div>
 
                             <!-- Right Column: Details -->
@@ -153,7 +147,27 @@
                                             <p class="text-xs text-gray-600">Add 6 Months for &#8377;1,499</p>
                                         </div>
                                     </div>
-                                    <button <div class="space-y-6">
+                                    <button class="bg-black text-white text-xs font-bold px-3 py-1.5 rounded">Add</button>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex gap-4 mb-8">
+                                    <form action="/cart" method="POST" class="flex-1">
+                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
+                                        <button type="submit" class="w-full flex items-center justify-center gap-2 border border-black rounded-lg py-3 font-bold hover:bg-gray-50 transition-colors">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            Add to Cart
+                                        </button>
+                                    </form>
+                                    <form action="/cart" method="POST" class="flex-1">
+                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
+                                        <button type="submit" class="w-full bg-black text-white rounded-lg py-3 font-bold hover:bg-gray-800 transition-colors">
+                                            Buy Now
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <div class="space-y-6">
                                         <div>
                                             <h3 class="font-bold text-gray-900 mb-3">Condition</h3>
                                             <div class="flex gap-3">
@@ -172,72 +186,84 @@
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <h3 class="font-bold text-gray-900 mb-3">Storage</h3>
-                                            <button
-                                                class="px-4 py-2 border-2 border-cyan-500 bg-cyan-50 text-cyan-700 font-bold rounded-lg text-sm">
-                                                <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
-                                            </button>
-                                        </div>
-
-                                        <div>
-                                            <h3 class="font-bold text-gray-900 mb-3">Operating System</h3>
-                                            <button
-                                                class="px-4 py-2 border-2 border-cyan-500 bg-cyan-50 text-cyan-700 font-bold rounded-lg text-sm">
-                                                <%= laptop.specifications.os || 'Windows 10 / 11' %>
-                                            </button>
-                                        </div>
-                                </div>
-
-                                <!-- Technical Specifications (Right Column) -->
-                                <div class="mt-8">
-                                    <h3 class="font-bold text-gray-900 mb-3">Technical Specifications</h3>
-                                    <div class="grid grid-cols-2 gap-4 text-sm">
-                                        <div class="bg-gray-50 p-3 rounded">
-                                            <span class="text-gray-500 block text-xs">Processor</span>
-                                            <span class="font-medium text-gray-900">
-                                                <%= laptop.specifications.processor %>
-                                            </span>
-                                        </div>
-                                        <div class="bg-gray-50 p-3 rounded">
-                                            <span class="text-gray-500 block text-xs">RAM</span>
-                                            <span class="font-medium text-gray-900">
-                                                <%= laptop.specifications.ram %>
-                                            </span>
-                                        </div>
-                                        <div class="bg-gray-50 p-3 rounded">
-                                            <span class="text-gray-500 block text-xs">Storage</span>
-                                            <span class="font-medium text-gray-900">
-                                                <%= laptop.specifications.storage %>
-                                            </span>
-                                        </div>
-                                        <div class="bg-gray-50 p-3 rounded">
-                                            <span class="text-gray-500 block text-xs">Display</span>
-                                            <span class="font-medium text-gray-900">
-                                                <%= laptop.specifications.display %>
-                                            </span>
-                                        </div>
-                                        <div class="bg-gray-50 p-3 rounded">
-                                            <span class="text-gray-500 block text-xs">Operating
-                                                System</span>
-                                            <span class="font-medium text-gray-900">
-                                                <%= laptop.specifications.os || 'N/A' %>
-                                            </span>
-                                        </div>
-                                        <% if(laptop.specifications.graphics) { %>
-                                            <div class="bg-gray-50 p-3 rounded">
-                                                <span class="text-gray-500 block text-xs">Graphics</span>
-                                                <span class="font-medium text-gray-900">
-                                                    <%= laptop.specifications.graphics %>
-                                                </span>
-                                            </div>
-                                            <% } %>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                                                        <!-- Description & Specs Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                            <!-- Product Description (Left) -->
+                            <div class="pt-6 border-t border-gray-100 lg:border-t-0 lg:pt-0">
+                                <h3 class="font-bold text-gray-900 mb-3">Product Description</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">
+                                    <%= laptop.description %>
+                                </p>
+                            </div>
+
+                            <!-- Technical Specifications (Right) -->
+                            <div class="space-y-6">
+                                <div>
+                                    <h3 class="font-bold text-gray-900 mb-3">Storage</h3>
+                                    <button
+                                        class="px-4 py-2 border-2 border-cyan-500 bg-cyan-50 text-cyan-700 font-bold rounded-lg text-sm">
+                                        <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <h3 class="font-bold text-gray-900 mb-3">Operating System</h3>
+                                    <button
+                                        class="px-4 py-2 border-2 border-cyan-500 bg-cyan-50 text-cyan-700 font-bold rounded-lg text-sm">
+                                        <%= laptop.specifications.os || 'Windows 10 / 11' %>
+                                    </button>
+                                </div>
+
+                                <div>
+                                    <h3 class="font-bold text-gray-900 mb-3">Technical Specifications</h3>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div class="bg-gray-50 p-3 rounded">
+                                        <span class="text-gray-500 block text-xs">Processor</span>
+                                        <span class="font-medium text-gray-900">
+                                            <%= laptop.specifications.processor %>
+                                        </span>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded">
+                                        <span class="text-gray-500 block text-xs">RAM</span>
+                                        <span class="font-medium text-gray-900">
+                                            <%= laptop.specifications.ram %>
+                                        </span>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded">
+                                        <span class="text-gray-500 block text-xs">Storage</span>
+                                        <span class="font-medium text-gray-900">
+                                            <%= laptop.specifications.storage %>
+                                        </span>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded">
+                                        <span class="text-gray-500 block text-xs">Display</span>
+                                        <span class="font-medium text-gray-900">
+                                            <%= laptop.specifications.display %>
+                                        </span>
+                                    </div>
+                                    <div class="bg-gray-50 p-3 rounded">
+                                        <span class="text-gray-500 block text-xs">Operating System</span>
+                                        <span class="font-medium text-gray-900">
+                                            <%= laptop.specifications.os || 'N/A' %>
+                                        </span>
+                                    </div>
+                                    <% if(laptop.specifications.graphics) { %>
+                                        <div class="bg-gray-50 p-3 rounded">
+                                            <span class="text-gray-500 block text-xs">Graphics</span>
+                                            <span class="font-medium text-gray-900">
+                                                <%= laptop.specifications.graphics %>
+                                            </span>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div> <!-- End of bg-white card -->
                     <!-- Similar Products (You May Also Like) -->
                     <% if(similarLaptops && similarLaptops.length> 0) { %>
                         <div class="mt-12 mb-12">
@@ -329,8 +355,9 @@
                                     <% }) %>
                             </div>
                         </div>
-                        <% } %>
+                    <% } %>
 
+                
                 </div>
             </main>
 
