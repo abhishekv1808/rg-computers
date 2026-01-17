@@ -1,52 +1,10 @@
 ﻿<%- include('../partials/head.ejs') %>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <body class="bg-gray-50 text-gray-600">
 
         <!-- Top Navigation -->
-        <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex justify-between h-16">
-                    <!-- Logo & Nav Links -->
-                    <div class="flex items-center">
-                        <a href="/admin/dashboard" class="flex items-center mr-10">
-                            <img src="/images/RgComputers-logo.png" alt="RG Computers" class="h-10 object-contain">
-                        </a>
-                        <div class="hidden md:flex space-x-1">
-                            <a href="/admin/dashboard"
-                                class="px-3 py-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md">Dashboard</a>
-                            <a href="/admin/inventory"
-                                class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md">Inventory</a>
-                            <a href="#"
-                                class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md">Orders</a>
-                            <a href="#"
-                                class="px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md">Customers</a>
-                        </div>
-                    </div>
-
-                    <!-- Right Side Actions -->
-                    <div class="flex items-center space-x-4">
-                        <button class="text-gray-400 hover:text-gray-500">
-                            <i class="far fa-bell text-lg"></i>
-                        </button>
-                        <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
-                            <div class="text-right hidden sm:block">
-                                <p class="text-sm font-semibold text-gray-900">Admin User</p>
-                                <p class="text-xs text-gray-500">Manager</p>
-                            </div>
-                            <div
-                                class="h-9 w-9 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold border border-blue-200">
-                                A
-                            </div>
-                            <form action="/admin/logout" method="POST">
-                                <button type="submit" class="text-gray-400 hover:text-red-500 ml-2" title="Logout">
-                                    <i class="fas fa-sign-out-alt"></i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <%- include('../partials/admin-navbar.ejs') %>
 
         <div class="max-w-7xl mx-auto px-6 py-8">
 
@@ -284,22 +242,49 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Pagination (Visual only) -->
-                    <% if (laptops.length> 0) { %>
+                    <!-- Pagination -->
+                    <% if (totalLaptops > 0) { %>
                         <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
-                            <p class="text-xs text-gray-500">Showing <span class="font-medium">
-                                    <%= laptops.length %>
-                                </span> items</p>
+                            <p class="text-xs text-gray-500">
+                                Showing 
+                                <span class="font-medium"><%= (currentPage - 1) * 10 + 1 %></span> 
+                                to 
+                                <span class="font-medium"><%= Math.min(currentPage * 10, totalLaptops) %></span> 
+                                of 
+                                <span class="font-medium"><%= totalLaptops %></span> 
+                                items
+                            </p>
                             <div class="flex gap-2">
-                                <button
-                                    class="p-1 rounded text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-50"><i
-                                        class="fas fa-chevron-left"></i></button>
-                                <button
-                                    class="p-1 rounded text-gray-400 hover:text-gray-600 hover:bg-gray-100 disabled:opacity-50"><i
-                                        class="fas fa-chevron-right"></i></button>
+                                <% if (hasPreviousPage) { %>
+                                    <a href="/admin/dashboard?page=<%= previousPage %>" 
+                                       class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors" title="Previous">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </a>
+                                <% } else { %>
+                                    <button disabled 
+                                        class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                <% } %>
+
+                                <div class="flex items-center px-2">
+                                    <span class="text-sm font-medium text-gray-700">Page <%= currentPage %> of <%= lastPage %></span>
+                                </div>
+
+                                <% if (hasNextPage) { %>
+                                    <a href="/admin/dashboard?page=<%= nextPage %>" 
+                                       class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors" title="Next">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                <% } else { %>
+                                    <button disabled 
+                                        class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                <% } %>
                             </div>
                         </div>
-                        <% } %>
+                    <% } %>
                 </div>
 
                 <!-- Right Column: Recent Activity & Quick Actions -->
@@ -373,6 +358,126 @@
                                     Connected
                                 </span>
                             </div>
+                            <!-- Brand Distribution Chart -->
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                                <div class="flex items-center justify-between mb-6">
+                                    <h3 class="text-base font-bold text-gray-900 flex items-center gap-2">
+                                        <div class="w-1 h-5 bg-blue-600 rounded-full"></div>
+                                        Brand Inventory
+                                    </h3>
+                                    <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Distribution</span>
+                                </div>
+                                
+                                <div class="relative h-64 w-full">
+                                    <canvas id="brandChart"></canvas>
+                                    <!-- Center Text Overlay -->
+                                    <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                        <span class="text-3xl font-bold text-gray-900" id="totalLaptopsCount">0</span>
+                                        <span class="text-xs text-gray-500 font-medium uppercase tracking-wide">Products</span>
+                                    </div>
+                                </div>
+
+                                <!-- Custom Legend Container -->
+                                <div id="chartLegend" class="mt-6 grid grid-cols-2 gap-3 text-xs"></div>
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    const ctx = document.getElementById('brandChart').getContext('2d');
+                                    // Safely parse EJS data
+                                    const brandData = <%- JSON.stringify(brandData || { labels: [], data: [] }) %>;
+                                    const totalItems = brandData.data.reduce((a, b) => a + b, 0);
+                                    
+                                    // Update center text
+                                    document.getElementById('totalLaptopsCount').textContent = totalItems;
+
+                                    // Palette
+                                    const colors = [
+                                        '#3B82F6', // Blue 500
+                                        '#10B981', // Emerald 500
+                                        '#8B5CF6', // Violet 500
+                                        '#F59E0B', // Amber 500
+                                        '#EF4444', // Red 500
+                                        '#EC4899', // Pink 500
+                                        '#6366F1', // Indigo 500
+                                        '#14B8A6', // Teal 500
+                                        '#F97316'  // Orange 500
+                                    ];
+
+                                    if (brandData.labels.length > 0) {
+                                        const chart = new Chart(ctx, {
+                                            type: 'doughnut',
+                                            data: {
+                                                labels: brandData.labels,
+                                                datasets: [{
+                                                    data: brandData.data,
+                                                    backgroundColor: colors,
+                                                    borderWidth: 0,
+                                                    hoverOffset: 10,
+                                                    borderRadius: 4,
+                                                    cutout: '85%'
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                maintainAspectRatio: false,
+                                                plugins: {
+                                                    legend: {
+                                                        display: false // Hide default legend
+                                                    },
+                                                    tooltip: {
+                                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                                        titleColor: '#1F2937',
+                                                        bodyColor: '#4B5563',
+                                                        borderColor: '#E5E7EB',
+                                                        borderWidth: 1,
+                                                        padding: 10,
+                                                        cornerRadius: 8,
+                                                        displayColors: true,
+                                                        boxWidth: 8,
+                                                        callbacks: {
+                                                            label: function(context) {
+                                                                const label = context.label || '';
+                                                                const value = context.raw || 0;
+                                                                const percentage = Math.round((value / totalItems) * 100) + '%';
+                                                                return ` ${label}: ${value} (${percentage})`;
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                animation: {
+                                                    animateScale: true,
+                                                    animateRotate: true
+                                                }
+                                            }
+                                        });
+
+                                        // Generate Custom Legend
+                                        const legendContainer = document.getElementById('chartLegend');
+                                        brandData.labels.forEach((label, index) => {
+                                            const value = brandData.data[index];
+                                            const percent = Math.round((value / totalItems) * 100);
+                                            const color = colors[index % colors.length];
+                                            
+                                            const item = document.createElement('div');
+                                            item.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors';
+                                            item.innerHTML = `
+                                                <div class="flex items-center gap-2">
+                                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
+                                                    <span class="font-medium text-gray-700 truncate max-w-[80px]" title="${label}">${label}</span>
+                                                </div>
+                                                <div class="text-right">
+                                                    <span class="font-bold text-gray-900 block">${value}</span>
+                                                </div>
+                                            `;
+                                            legendContainer.appendChild(item);
+                                        });
+
+                                    } else {
+                                        // Handle empty state
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

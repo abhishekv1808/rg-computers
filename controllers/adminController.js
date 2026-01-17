@@ -59,15 +59,35 @@ exports.postLogout = (req, res, next) => {
 
 exports.getDashboard = async (req, res, next) => {
     try {
-        const laptops = await Laptop.find().sort({ createdAt: -1 });
-        const totalLaptops = laptops.length;
-        const recentLaptops = laptops.slice(0, 5);
+        const page = +req.query.page || 1;
+        const ITEMS_PER_PAGE = 10;
 
-        // Calculate total inventory value
-        const totalValue = laptops.reduce((acc, curr) => acc + (curr.price * curr.stockQuantity), 0);
+        const totalLaptops = await Laptop.countDocuments();
+        const laptops = await Laptop.find()
+            .sort({ createdAt: -1 })
+            .skip((page - 1) * ITEMS_PER_PAGE)
+            .limit(ITEMS_PER_PAGE);
+
+        const recentLaptops = await Laptop.find().sort({ createdAt: -1 }).limit(5); // Separate query for recent items widget
+
+        // Calculate total inventory value (using aggregation for efficiency over entire dataset)
+        const allLaptopsForStats = await Laptop.find({}, 'price stockQuantity brand');
+        const totalValue = allLaptopsForStats.reduce((acc, curr) => acc + (curr.price * curr.stockQuantity), 0);
 
         // Calculate unique brands
-        const uniqueBrands = [...new Set(laptops.map(l => l.brand))].length;
+        const uniqueBrands = [...new Set(allLaptopsForStats.map(l => l.brand))].length;
+
+        // Calculate Brand Distribution for Chart
+        const brandCounts = {};
+        allLaptopsForStats.forEach(laptop => {
+            const brand = laptop.brand || 'Unknown';
+            brandCounts[brand] = (brandCounts[brand] || 0) + 1;
+        });
+
+        const brandData = {
+            labels: Object.keys(brandCounts),
+            data: Object.values(brandCounts)
+        };
 
         res.render('admin/admin-portal', {
             pageTitle: 'Admin Dashboard',
@@ -76,7 +96,14 @@ exports.getDashboard = async (req, res, next) => {
             recentLaptops: recentLaptops,
             totalValue: totalValue,
             uniqueBrands: uniqueBrands,
-            path: '/admin/dashboard'
+            brandData: brandData, // Pass chart data
+            path: '/admin/dashboard',
+            currentPage: page,
+            hasNextPage: ITEMS_PER_PAGE * page < totalLaptops,
+            hasPreviousPage: page > 1,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            lastPage: Math.ceil(totalLaptops / ITEMS_PER_PAGE)
         });
     } catch (err) {
         console.log(err);
@@ -371,11 +398,26 @@ exports.postDeleteLaptop = async (req, res, next) => {
 
 exports.getInventory = async (req, res, next) => {
     try {
-        const laptops = await Laptop.find().sort({ brand: 1 });
+        const page = +req.query.page || 1;
+        const ITEMS_PER_PAGE = 10;
+
+        const totalLaptops = await Laptop.countDocuments();
+        const laptops = await Laptop.find()
+            .sort({ brand: 1 })
+            .skip((page - 1) * ITEMS_PER_PAGE)
+            .limit(ITEMS_PER_PAGE);
+
         res.render('admin/inventory', {
             pageTitle: 'Inventory Management',
             laptops: laptops,
-            path: '/admin/inventory'
+            path: '/admin/inventory',
+            currentPage: page,
+            hasNextPage: ITEMS_PER_PAGE * page < totalLaptops,
+            hasPreviousPage: page > 1,
+            nextPage: page + 1,
+            previousPage: page - 1,
+            lastPage: Math.ceil(totalLaptops / ITEMS_PER_PAGE),
+            totalLaptops: totalLaptops // Pass total count for UI
         });
     } catch (err) {
         console.log(err);

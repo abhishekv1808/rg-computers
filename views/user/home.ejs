@@ -320,6 +320,42 @@
                 </section>
                 <!-- FEATURES BAR END -->
 
+                <!-- BRANDS LOGO SECTION START -->
+                <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-8">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Brands We Deal In</h2>
+                        <div class="w-20 h-1 bg-cyan-500 mx-auto mt-2 rounded-full"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center justify-items-center">
+                        <!-- Apple -->
+                        <a href="/brand/Apple" class="w-full h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-lg hover:-translate-y-2 hover:border-cyan-300 hover:bg-cyan-50/50 transition-all duration-300 group cursor-pointer">
+                            <img src="/images/apple-logo.png" alt="Apple" class="max-h-12 w-auto object-contain">
+                        </a>
+
+                        <!-- Dell -->
+                        <a href="/brand/Dell" class="w-full h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-lg hover:-translate-y-2 hover:border-cyan-300 hover:bg-cyan-50/50 transition-all duration-300 group cursor-pointer">
+                            <img src="/images/dell-logo2.png" alt="Dell" class="max-h-12 w-auto object-contain">
+                        </a>
+
+                        <!-- HP -->
+                        <a href="/brand/HP" class="w-full h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-lg hover:-translate-y-2 hover:border-cyan-300 hover:bg-cyan-50/50 transition-all duration-300 group cursor-pointer">
+                            <img src="/images/hp-logo2.png" alt="HP" class="max-h-12 w-auto object-contain">
+                        </a>
+
+                        <!-- Lenovo -->
+                        <a href="/brand/Lenovo" class="w-full h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-lg hover:-translate-y-2 hover:border-cyan-300 hover:bg-cyan-50/50 transition-all duration-300 group cursor-pointer">
+                            <img src="/images/lenovo-logo.svg" alt="Lenovo" class="max-h-8 w-auto object-contain">
+                        </a>
+
+                        <!-- MSI (Text/Placeholder) -->
+                        <a href="/brand/MSI" class="w-full h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-lg hover:-translate-y-2 hover:border-cyan-300 hover:bg-cyan-50/50 transition-all duration-300 group cursor-pointer">
+                            <img src="/images/MSI-Logo.jpg" alt="MSI" class="max-h-12 w-auto object-contain">
+                        </a>
+                    </div>
+                </section>
+                <!-- BRANDS LOGO SECTION END -->
+
                 <!-- OUR SERVICES SECTION START -->
                 <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 pt-8">
                     <div class="flex items-center justify-between mb-8">
@@ -460,7 +496,7 @@
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
                                             <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 snap-start flex flex-col relative group">
+                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
                                                 <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
                                                 <!-- Header Badges -->
                                                 <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -499,13 +535,13 @@
                                                 <!-- Discount Tag -->
                                                 <div class="mb-2">
                                                     <span
-                                                        class="bg-green-50 text-cyan-600 text-[10px] font-bold px-1.5 py-0.5 rounded">&#8377;
+                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
                                                         <%= discount.toLocaleString('en-IN') %> OFF
                                                     </span>
                                                 </div>
 
                                                 <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
+                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
                                                         <%= laptop.model %>
                                                             <%= laptop.specifications.processor %>
                                                 </h3>
@@ -544,14 +580,16 @@
                                                 </div>
 
                                                 <!-- Price Section -->
-                                                <div class="flex items-center gap-2">
-                                                    <span class="text-red-500 text-sm font-medium">-<%= discountPercent
-                                                            %>
-                                                            %</span>
-                                                    <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                            laptop.price.toLocaleString('en-IN') %></span>
+                                                <div class="flex flex-col gap-1 mt-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                                laptop.price.toLocaleString('en-IN') %></span>
+                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                            -<%= discountPercent %>%
+                                                        </span>
+                                                    </div>
                                                     <span
-                                                        class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                         <%= laptop.mrp.toLocaleString('en-IN') %>
                                                     </span>
                                                 </div>
@@ -621,7 +659,7 @@
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
                                             <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 snap-start flex flex-col relative group">
+                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
                                                 <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
                                                 <!-- Header Badges -->
                                                 <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -661,13 +699,13 @@
                                                 <!-- Discount Tag -->
                                                 <div class="mb-2">
                                                     <span
-                                                        class="bg-green-50 text-cyan-600 text-[10px] font-bold px-1.5 py-0.5 rounded">&#8377;
+                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
                                                         <%= discount.toLocaleString('en-IN') %> OFF
                                                     </span>
                                                 </div>
 
                                                 <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
+                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
                                                         <%= laptop.model %>
                                                             <%= laptop.specifications.processor %>
                                                 </h3>
@@ -705,14 +743,16 @@
                                                 </div>
 
                                                 <!-- Price Section -->
-                                                <div class="flex items-center gap-2">
-                                                    <span class="text-red-500 text-sm font-medium">-<%= discountPercent
-                                                            %>
-                                                            %</span>
-                                                    <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                            laptop.price.toLocaleString('en-IN') %></span>
+                                                <div class="flex flex-col gap-1 mt-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                                laptop.price.toLocaleString('en-IN') %></span>
+                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                            -<%= discountPercent %>%
+                                                        </span>
+                                                    </div>
                                                     <span
-                                                        class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                         <%= laptop.mrp.toLocaleString('en-IN') %>
                                                     </span>
                                                 </div>
@@ -780,7 +820,7 @@
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
                                             <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 snap-start flex flex-col relative group">
+                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
                                                 <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
                                                 <!-- Header Badges -->
                                                 <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -820,13 +860,13 @@
                                                 <!-- Discount Tag -->
                                                 <div class="mb-2">
                                                     <span
-                                                        class="bg-green-50 text-cyan-600 text-[10px] font-bold px-1.5 py-0.5 rounded">&#8377;
+                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
                                                         <%= discount.toLocaleString('en-IN') %> OFF
                                                     </span>
                                                 </div>
 
                                                 <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
+                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
                                                         <%= laptop.model %>
                                                             <%= laptop.specifications.processor %>
                                                 </h3>
@@ -865,14 +905,16 @@
                                                 </div>
 
                                                 <!-- Price Section -->
-                                                <div class="flex items-center gap-2">
-                                                    <span class="text-red-500 text-sm font-medium">-<%= discountPercent
-                                                            %>
-                                                            %</span>
-                                                    <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                            laptop.price.toLocaleString('en-IN') %></span>
+                                                <div class="flex flex-col gap-1 mt-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                                laptop.price.toLocaleString('en-IN') %></span>
+                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                            -<%= discountPercent %>%
+                                                        </span>
+                                                    </div>
                                                     <span
-                                                        class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                         <%= laptop.mrp.toLocaleString('en-IN') %>
                                                     </span>
                                                 </div>
@@ -939,7 +981,7 @@
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
                                             <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 snap-start flex flex-col relative group">
+                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
                                                 <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
                                                 <!-- Header Badges -->
                                                 <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -979,13 +1021,13 @@
                                                 <!-- Discount Tag -->
                                                 <div class="mb-2">
                                                     <span
-                                                        class="bg-green-50 text-cyan-600 text-[10px] font-bold px-1.5 py-0.5 rounded">&#8377;
+                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
                                                         <%= discount.toLocaleString('en-IN') %> OFF
                                                     </span>
                                                 </div>
 
                                                 <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
+                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
                                                         <%= laptop.model %>
                                                             <%= laptop.specifications.processor %>
                                                 </h3>
@@ -1024,14 +1066,16 @@
                                                 </div>
 
                                                 <!-- Price Section -->
-                                                <div class="flex items-center gap-2">
-                                                    <span class="text-red-500 text-sm font-medium">-<%= discountPercent
-                                                            %>
-                                                            %</span>
-                                                    <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                            laptop.price.toLocaleString('en-IN') %></span>
+                                                <div class="flex flex-col gap-1 mt-2">
+                                                    <div class="flex items-center gap-2">
+                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                                laptop.price.toLocaleString('en-IN') %></span>
+                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                            -<%= discountPercent %>%
+                                                        </span>
+                                                    </div>
                                                     <span
-                                                        class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                         <%= laptop.mrp.toLocaleString('en-IN') %>
                                                     </span>
                                                 </div>
@@ -1213,7 +1257,7 @@
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Gaming Machines
                                     </h3>
                                     <!-- Specs -->
-                                    <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                    <div class="flex flex-wrap gap-2 mb-3">
                                         <span
                                             class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">8GB
                                             RAM</span>
@@ -1248,7 +1292,7 @@
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Business
                                         Laptops</h3>
                                     <!-- Specs -->
-                                    <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                    <div class="flex flex-wrap gap-2 mb-3">
                                         <span
                                             class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">8GB
                                             RAM</span>
@@ -1284,7 +1328,7 @@
                                     <h3 class="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Video Editors
                                     </h3>
                                     <!-- Specs -->
-                                    <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                    <div class="flex flex-wrap gap-2 mb-3">
                                         <span
                                             class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">8GB
                                             RAM</span>
@@ -1323,7 +1367,7 @@
                                     const discountPercent = Math.round((discount / desktop.mrp) * 100);
                                     %>
                                     <a href="/laptop/<%= desktop._id %>"
-                                        class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 flex flex-col group relative">
+                                        class="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group relative">
                                         <!-- Header Badges -->
                                         <div class="flex justify-between items-start w-full relative z-10 mb-2">
                                             <span
@@ -1360,13 +1404,13 @@
                                         </p>
 
                                         <!-- Title -->
-                                        <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 truncate"
+                                        <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 truncate"
                                             title="<%= desktop.model %>">
                                             <%= desktop.model %>
                                         </h3>
 
                                         <!-- Specs -->
-                                        <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                        <div class="flex flex-wrap gap-2 mb-3">
                                             <% if (desktop.specifications && desktop.specifications.processor) { %>
                                                 <span
                                                     class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded border border-gray-200 truncate max-w-full">
@@ -1383,13 +1427,16 @@
 
                                         <!-- Price Section -->
                                         <div
-                                            class="mt-auto flex items-center gap-2 pt-2 border-t border-gray-100 md:border-0 md:pt-0">
-                                            <span class="text-red-500 text-sm font-medium">-<%= discountPercent %>
-                                                    %</span>
-                                            <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                    desktop.price.toLocaleString('en-IN') %></span>
+                                            class="mt-auto flex flex-col gap-1 pt-3 border-t border-gray-50 md:border-0 md:pt-0">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                        desktop.price.toLocaleString('en-IN') %></span>
+                                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                    -<%= discountPercent %>%
+                                                </span>
+                                            </div>
                                             <span
-                                                class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                 <%= desktop.mrp.toLocaleString('en-IN') %>
                                             </span>
                                         </div>
@@ -1426,7 +1473,7 @@
                                     const discountPercent = Math.round((discount / monitor.mrp) * 100);
                                     %>
                                     <a href="/monitor/<%= monitor._id %>"
-                                        class="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 flex flex-col group relative">
+                                        class="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group relative">
                                         <!-- Header Badges -->
                                         <div class="flex justify-between items-start w-full relative z-10 mb-2">
                                             <span
@@ -1463,13 +1510,13 @@
                                         </p>
 
                                         <!-- Title -->
-                                        <h3 class="font-bold text-gray-900 text-sm leading-tight mb-2 truncate"
+                                        <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 truncate"
                                             title="<%= monitor.model %>">
                                             <%= monitor.model %>
                                         </h3>
 
                                         <!-- Specs -->
-                                        <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                        <div class="flex flex-wrap gap-2 mb-3">
                                             <% if (monitor.specifications && monitor.specifications.display) { %>
                                                 <span
                                                     class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded border border-gray-200 truncate max-w-full">
@@ -1482,13 +1529,16 @@
 
                                         <!-- Price Section -->
                                         <div
-                                            class="mt-auto flex items-center gap-2 pt-2 border-t border-gray-100 md:border-0 md:pt-0">
-                                            <span class="text-red-500 text-sm font-medium">-<%= discountPercent %>
-                                                    %</span>
-                                            <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                    monitor.price.toLocaleString('en-IN') %></span>
+                                            class="mt-auto flex flex-col gap-1 pt-3 border-t border-gray-50 md:border-0 md:pt-0">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                        monitor.price.toLocaleString('en-IN') %></span>
+                                                <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                    -<%= discountPercent %>%
+                                                </span>
+                                            </div>
                                             <span
-                                                class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
+                                                class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
                                                 <%= monitor.mrp.toLocaleString('en-IN') %>
                                             </span>
                                         </div>

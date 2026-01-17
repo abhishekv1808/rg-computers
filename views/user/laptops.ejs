@@ -216,7 +216,7 @@
                                         const discount = laptop.mrp - laptop.price;
                                         const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                         %>
-                                        <div class="product-card bg-white border border-gray-200 rounded-lg p-3 hover:shadow-lg transition-all duration-300 flex flex-col relative group h-full"
+                                        <div class="product-card bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col relative group h-full"
                                             data-category="<%= categoryValue %>" data-brand="<%= laptop.brand %>"
                                             data-processor="<%= processorValue %>" data-price="<%= laptop.price %>">
                                             <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
@@ -253,18 +253,18 @@
                                             <!-- Discount Tag -->
                                             <div class="mb-2">
                                                 <span
-                                                    class="bg-green-50 text-cyan-600 text-[10px] font-bold px-1.5 py-0.5 rounded">&#8377;
+                                                    class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
                                                     <%= discount.toLocaleString('en-IN') %> OFF</span>
                                             </div>
 
                                             <!-- Title -->
                                             <h3
-                                                class="font-bold text-gray-900 text-sm leading-tight mb-2 line-clamp-2 min-h-[40px]">
+                                                class="font-bold text-gray-900 text-base leading-tight mb-2 line-clamp-2 min-h-[40px]">
                                                 <%= laptop.model %> (<%= laptop.specifications.processor %>)
                                             </h3>
 
                                             <!-- Specs -->
-                                            <div class="flex flex-wrap gap-2 mb-3 h-14 overflow-hidden">
+                                            <div class="flex flex-wrap gap-2 mb-3">
                                                 <% if(laptop.specifications.processor) { %>
                                                     <span
                                                         class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
@@ -297,14 +297,18 @@
                                             </div>
 
                                             <!-- Price Section -->
-                                            <div class="flex items-center gap-2">
-                                                <span class="text-red-500 text-sm font-medium">-<%= discountPercent %>
-                                                        %</span>
-                                                <span class="text-lg font-bold text-gray-900">&#8377;<%=
-                                                        laptop.price.toLocaleString('en-IN') %></span>
+                                            <div class="mt-auto flex flex-col gap-1 pt-3 border-t border-gray-50 md:border-0 md:pt-0">
+                                                <div class="flex items-center gap-2">
+                                                    <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
+                                                            laptop.price.toLocaleString('en-IN') %></span>
+                                                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+                                                        -<%= discountPercent %>%
+                                                    </span>
+                                                </div>
                                                 <span
-                                                    class="text-xs text-gray-400 line-through text-decoration-line-through decoration-gray-400">&#8377;
-                                                    <%= laptop.mrp.toLocaleString('en-IN') %></span>
+                                                    class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
+                                                    <%= laptop.mrp.toLocaleString('en-IN') %>
+                                                </span>
                                             </div>
 
                                             <form action="/cart" method="POST"
