@@ -254,7 +254,7 @@
                 : '<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-100 text-red-700"><i class="fas fa-times-circle mr-1.5"></i> Out of Stock</span>';
 
             // Link
-            document.getElementById(`link${colNum}`).href = `/laptop/${data._id}`;
+            document.getElementById(`link${colNum}`).href = `/laptop/${data.slug}`;
         }
 
         compareBtn.addEventListener('click', updateComparison);

@@ -32,7 +32,7 @@
                                 const discount = laptop.mrp - laptop.price;
                                 const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                 %>
-                                <a href="/laptop/<%= laptop._id %>" class="group block h-full bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                                <a href="/laptop/<%= laptop.slug %>" class="group block h-full bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
                                     <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
                                         <!-- Badges -->
                                         <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
@@ -40,16 +40,19 @@
                                                 <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
                                                     OUT OF STOCK
                                                 </span>
-                                            <% } else { %>
-                                                <span class="bg-white/90 backdrop-blur-sm text-black text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
-                                                    REFURBISHED
-                                                </span>
                                             <% } %>
                                             <% if(laptop.stockQuantity < 5 && laptop.stockQuantity > 0) { %>
                                                 <span class="bg-red-50 text-red-600 border border-red-100 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
                                                     <%= laptop.stockQuantity %> Left
                                                 </span>
                                             <% } %>
+                                        </div>
+
+                                        <!-- Sale Badge -->
+                                        <div class="absolute top-4 right-4 z-10">
+                                            <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                <%= discountPercent %>% OFF
+                                            </span>
                                         </div>
 
                                         <!-- Image -->
@@ -67,6 +70,15 @@
                                         <p class="text-sm text-gray-400 mb-3 truncate">
                                             <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
                                         </p>
+                                        
+                                        <!-- Rating Section -->
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="bg-[#1e3a8a] text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">Top Rated</span>
+                                                        <div class="flex items-center gap-1 bg-white border border-gray-200 px-2 py-0.5 rounded-md shadow-sm">
+                                                            <span class="text-xs font-bold text-gray-700">4.7</span>
+                                                            <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                        </div>
+                                                    </div>
                                         
                                         <div class="flex items-baseline gap-3">
                                             <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>

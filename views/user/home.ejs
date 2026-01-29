@@ -8,68 +8,94 @@
             <main class="bg-gray-50 min-h-screen">
 
                 <!-- HERO SECTION START -->
-                <section class="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4">
-                    <div class="relative w-full h-[400px] md:h-[380px] rounded-[32px] overflow-hidden shadow-2xl group">
+                <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-8">
+                    <div class="relative w-full h-[500px] md:h-[600px] rounded-[40px] overflow-hidden shadow-2xl shadow-gray-200/50 group ring-1 ring-black/5">
 
                         <!-- Carousel Slides Container -->
                         <div id="hero-carousel"
-                            class="flex h-full transition-transform duration-700 ease-out will-change-transform">
+                            class="flex h-full transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
 
                             <!-- SLIDE 1: SELL LAPTOP -->
-                            <div class="min-w-full h-full bg-[#20B2AA] relative flex items-center">
+                            <div class="min-w-full h-full bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] relative flex items-center overflow-hidden">
                                 <!-- Background Decoration -->
-                                <div
-                                    class="absolute top-0 right-0 w-1/2 h-full bg-[#1EA89F] rounded-l-[200px] opacity-50 transform translate-x-12 translate-y-12">
-                                </div>
+                                <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-500/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-pulse-slow"></div>
+                                <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+                                
+                                <!-- Grid Pattern Overlay -->
+                                <div class="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-[0.03]"></div>
 
-                                <div
-                                    class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
+                                <div class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
                                     <!-- Left Content -->
-                                    <div class="w-full md:w-1/2 text-white space-y-6 md:space-y-8 animate-fade-in-up">
-                                        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-                                            Sell old laptop
+                                    <div class="w-full md:w-1/2 text-white space-y-8 animate-fade-in-up pl-4">
+                                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 backdrop-blur-md">
+                                            <span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+                                            <span class="text-teal-300 text-xs font-bold tracking-wider uppercase">Instant Cash Payment</span>
+                                        </div>
+                                        
+                                        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+                                            Sell Your Old
                                             <br>
-                                            <span class="text-2xl md:text-3xl font-bold opacity-90">Get Instant
-                                                Cash!</span>
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-emerald-400">Laptop Today</span>
                                         </h1>
-                                        <p class="text-base md:text-lg font-medium opacity-95 max-w-md leading-relaxed">
-                                            From your doorstep or at any of our 200+ partner stores pan-India.
+                                        
+                                        <p class="text-lg md:text-xl text-gray-300 font-medium max-w-lg leading-relaxed">
+                                            Get the best price for your used device. Free doorstep pickup or visit our 200+ partner stores.
                                         </p>
-                                        <button
-                                            class="bg-white text-[#20B2AA] font-bold py-3.5 px-10 rounded-xl text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-xl shadow-teal-900/10">
-                                            Sell Now
-                                        </button>
+                                        
+                                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                            <button class="group relative px-8 py-4 bg-teal-500 hover:bg-teal-400 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:-translate-y-1 overflow-hidden">
+                                                <span class="relative z-10 flex items-center gap-2">
+                                                    Sell Now <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                                </span>
+                                            </button>
+                                            <button class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-2xl transition-all duration-300 backdrop-blur-sm flex items-center gap-2">
+                                                <i class="fas fa-calculator text-teal-400"></i> Check Value
+                                            </button>
+                                        </div>
+                                        
+                                        <!-- Trust Indicators -->
+                                        <div class="flex items-center gap-6 pt-4 text-sm font-medium text-gray-400">
+                                            <div class="flex items-center gap-2">
+                                                <i class="fas fa-check-circle text-teal-500"></i> Instant Payment
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <i class="fas fa-check-circle text-teal-500"></i> Safe & Secure
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Right Image Area -->
-                                    <div class="hidden md:flex w-1/2 h-full items-end justify-center relative">
-                                        <!-- Person Image Placeholder -->
-                                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800"
-                                            class="h-[95%] object-contain drop-shadow-2xl z-10 mask-image-gradient"
-                                            alt="Happy Customer">
+                                    <div class="hidden md:flex w-1/2 h-full items-center justify-center relative perspective-1000">
+                                        <!-- Main Image -->
+                                        <div class="relative z-10 transform transition-transform duration-700 hover:scale-105 hover:rotate-1">
+                                            <div class="absolute inset-0 bg-teal-500/20 blur-3xl rounded-full -z-10"></div>
+                                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?auto=format&fit=crop&q=80&w=800"
+                                                class="h-[450px] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] mask-image-gradient"
+                                                alt="Happy Customer">
+                                        </div>
 
-                                        <!-- Floating Badges -->
-                                        <div
-                                            class="absolute top-1/4 left-10 bg-black/80 backdrop-blur-md text-white p-3 rounded-2xl flex items-center gap-3 shadow-xl animate-float-slow z-20 border border-white/10">
-                                            <div class="bg-primary p-2 rounded-xl">
-                                                <i class="fas fa-truck-fast"></i>
-                                            </div>
-                                            <div class="pr-2">
-                                                <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
-                                                    Free</p>
-                                                <p class="text-sm font-bold">Doorstep Pickup</p>
+                                        <!-- Floating Cards -->
+                                        <div class="absolute top-1/4 left-0 bg-gray-900/80 backdrop-blur-xl border border-white/10 p-4 rounded-2xl shadow-2xl animate-float-slow z-20 max-w-[200px]">
+                                            <div class="flex items-center gap-3 mb-2">
+                                                <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center text-teal-400">
+                                                    <i class="fas fa-truck-fast"></i>
+                                                </div>
+                                                <div>
+                                                    <p class="text-xs text-gray-400 uppercase font-bold">Service</p>
+                                                    <p class="text-white font-bold">Free Pickup</p>
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div
-                                            class="absolute bottom-1/3 right-10 bg-white/95 backdrop-blur-md text-gray-800 p-3 rounded-2xl flex items-center gap-3 shadow-xl animate-float-delayed z-20">
-                                            <div class="bg-primary/10 text-primary p-2 rounded-xl">
-                                                <i class="fas fa-store"></i>
-                                            </div>
-                                            <div class="pr-2">
-                                                <p class="text-[10px] uppercase tracking-wider text-gray-400 font-bold">
-                                                    Network</p>
-                                                <p class="text-sm font-bold">200+ Stores</p>
+                                        <div class="absolute bottom-1/4 right-10 bg-white/90 backdrop-blur-xl border border-white/20 p-4 rounded-2xl shadow-2xl animate-float-delayed z-20">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-xl font-bold">
+                                                    ₹
+                                                </div>
+                                                <div>
+                                                    <p class="text-xs text-gray-500 uppercase font-bold">Payment</p>
+                                                    <p class="text-gray-900 font-bold text-lg">Instant Cash</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -77,31 +103,35 @@
                             </div>
 
                             <!-- SLIDE 2: BUY REFURBISHED -->
-                            <div class="min-w-full h-full bg-[#4F46E5] relative flex items-center">
+                            <div class="min-w-full h-full bg-gradient-to-br from-[#4f46e5] via-[#4338ca] to-[#3730a3] relative flex items-center overflow-hidden">
                                 <!-- Background Decoration -->
-                                <div
-                                    class="absolute bottom-0 left-0 w-1/2 h-full bg-[#4338ca] rounded-tr-[200px] opacity-50">
-                                </div>
+                                <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-indigo-400/20 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-0 right-0 w-[700px] h-[700px] bg-purple-500/20 rounded-full blur-[100px] translate-y-1/3 translate-x-1/4"></div>
 
-                                <div
-                                    class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
+                                <div class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
                                     <!-- Left Content -->
-                                    <div class="w-full md:w-1/2 text-white space-y-6 md:space-y-8">
-                                        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-                                            Premium Refurbished
+                                    <div class="w-full md:w-1/2 text-white space-y-8 pl-4">
+                                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+                                            <span class="text-indigo-200 text-xs font-bold tracking-wider uppercase">Premium Quality</span>
+                                        </div>
+
+                                        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+                                            Refurbished
                                             <br>
-                                            <span class="text-2xl md:text-3xl font-bold opacity-90">Up to 60% OFF</span>
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-white">Perfection</span>
                                         </h1>
-                                        <p class="text-base md:text-lg font-medium opacity-95 max-w-md leading-relaxed">
-                                            Certified laptops with 6 months warranty. Quality you can trust.
+                                        
+                                        <p class="text-lg md:text-xl text-indigo-100 font-medium max-w-lg leading-relaxed">
+                                            Save up to 60% on premium laptops. Rigorously tested, certified, and backed by a 6-month warranty.
                                         </p>
-                                        <div class="flex gap-4">
-                                            <button
-                                                class="bg-white text-[#4F46E5] font-bold py-3.5 px-10 rounded-xl text-lg hover:shadow-lg hover:scale-105 transition-all duration-300">
-                                                Buy Now
+                                        
+                                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                            <button class="group px-8 py-4 bg-white text-indigo-600 font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-indigo-900/20 hover:shadow-indigo-900/40 hover:-translate-y-1">
+                                                <span class="flex items-center gap-2">
+                                                    Shop Now <i class="fas fa-shopping-bag group-hover:scale-110 transition-transform"></i>
+                                                </span>
                                             </button>
-                                            <button
-                                                class="bg-transparent border-2 border-white text-white font-bold py-3.5 px-8 rounded-xl text-lg hover:bg-white/10 transition-all duration-300">
+                                            <button class="px-8 py-4 bg-indigo-500/30 hover:bg-indigo-500/40 border border-indigo-400/30 text-white font-bold rounded-2xl transition-all duration-300 backdrop-blur-sm">
                                                 View Warranty
                                             </button>
                                         </div>
@@ -110,35 +140,49 @@
                                     <!-- Right Image Area -->
                                     <div class="hidden md:flex w-1/2 h-full items-center justify-center relative">
                                         <img src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?auto=format&fit=crop&q=80&w=800"
-                                            class="h-[80%] object-contain drop-shadow-2xl rounded-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-500"
+                                            class="h-[400px] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.4)] rounded-3xl transform -rotate-6 hover:rotate-0 transition-all duration-700 z-10 border-4 border-white/10"
                                             alt="Refurbished Laptop">
+                                            
+                                        <!-- Badge -->
+                                        <div class="absolute top-1/3 right-10 bg-white text-indigo-900 p-4 rounded-2xl shadow-xl transform rotate-12 animate-float-slow z-20">
+                                            <div class="text-center">
+                                                <p class="text-3xl font-bold">60%</p>
+                                                <p class="text-xs font-bold uppercase tracking-wider">Off MRP</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- SLIDE 3: REPAIR EXPERTS -->
-                            <div class="min-w-full h-full bg-[#E11D48] relative flex items-center">
+                            <div class="min-w-full h-full bg-gradient-to-br from-[#be123c] via-[#9f1239] to-[#881337] relative flex items-center overflow-hidden">
                                 <!-- Background Decoration -->
-                                <div
-                                    class="absolute top-0 right-0 w-1/2 h-full bg-[#be123c] rounded-bl-[200px] opacity-50">
-                                </div>
+                                <div class="absolute inset-0 bg-[url('/images/circuit-pattern.svg')] opacity-10"></div>
+                                <div class="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-rose-500/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2"></div>
 
-                                <div
-                                    class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
+                                <div class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
                                     <!-- Left Content -->
-                                    <div class="w-full md:w-1/2 text-white space-y-6 md:space-y-8">
-                                        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-                                            Laptop Issues?
+                                    <div class="w-full md:w-1/2 text-white space-y-8 pl-4">
+                                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-rose-500/20 border border-rose-400/30 backdrop-blur-md">
+                                            <i class="fas fa-screwdriver-wrench text-rose-200 text-xs"></i>
+                                            <span class="text-rose-100 text-xs font-bold tracking-wider uppercase">Expert Repairs</span>
+                                        </div>
+
+                                        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+                                            Broken Laptop?
                                             <br>
-                                            <span class="text-2xl md:text-3xl font-bold opacity-90">We Fix It All</span>
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-200 to-orange-200">We Fix It.</span>
                                         </h1>
-                                        <p class="text-base md:text-lg font-medium opacity-95 max-w-md leading-relaxed">
-                                            Express repair service with genuine parts. Same day delivery available.
+                                        
+                                        <p class="text-lg md:text-xl text-rose-100 font-medium max-w-lg leading-relaxed">
+                                            Professional chip-level repairs, screen replacements, and upgrades. Same-day delivery for most issues.
                                         </p>
-                                        <div class="flex gap-4">
-                                            <button
-                                                class="bg-white text-[#E11D48] font-bold py-3.5 px-10 rounded-xl text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-xl shadow-rose-900/20">
-                                                Book Repair
+                                        
+                                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                            <button class="group px-8 py-4 bg-white text-rose-700 font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-rose-900/20 hover:shadow-rose-900/40 hover:-translate-y-1">
+                                                <span class="flex items-center gap-2">
+                                                    Book Repair <i class="fas fa-calendar-check group-hover:scale-110 transition-transform"></i>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -146,36 +190,46 @@
                                     <!-- Right Image Area -->
                                     <div class="hidden md:flex w-1/2 h-full items-center justify-center relative">
                                         <img src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&q=80&w=800"
-                                            class="h-[80%] object-contain drop-shadow-2xl rounded-2xl transform hover:scale-105 transition-transform duration-500"
+                                            class="h-[400px] object-contain drop-shadow-2xl rounded-2xl transform hover:scale-105 transition-transform duration-500 border-4 border-white/10"
                                             alt="Laptop Repair">
+                                            
+                                        <div class="absolute bottom-20 left-20 bg-gray-900/90 backdrop-blur-md text-white p-4 rounded-2xl shadow-2xl flex items-center gap-4 animate-float-delayed border border-white/10">
+                                            <div class="text-center border-r border-gray-700 pr-4">
+                                                <p class="text-2xl font-bold text-rose-500">24</p>
+                                                <p class="text-[10px] uppercase text-gray-400">Hours</p>
+                                            </div>
+                                            <div>
+                                                <p class="font-bold text-sm">Express</p>
+                                                <p class="text-xs text-gray-400">Turnaround</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- SLIDE 4: ACCESSORIES -->
-                            <div class="min-w-full h-full bg-[#7C3AED] relative flex items-center">
-                                <!-- Background Decoration -->
-                                <div
-                                    class="absolute bottom-0 left-0 w-2/3 h-full bg-[#6d28d9] rounded-r-[300px] opacity-40">
-                                </div>
+                            <div class="min-w-full h-full bg-gradient-to-br from-[#5b21b6] via-[#4c1d95] to-[#2e1065] relative flex items-center overflow-hidden">
+                                <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-violet-500/20 rounded-full blur-[100px]"></div>
+                                <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-fuchsia-500/20 rounded-full blur-[100px]"></div>
 
-                                <div
-                                    class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
+                                <div class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
                                     <!-- Left Content -->
-                                    <div class="w-full md:w-1/2 text-white space-y-6 md:space-y-8">
-                                        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-                                            Level Up Setup
+                                    <div class="w-full md:w-1/2 text-white space-y-8 pl-4">
+                                        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+                                            Level Up Your
                                             <br>
-                                            <span class="text-2xl md:text-3xl font-bold opacity-90">Gaming Gear &
-                                                More</span>
+                                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-fuchsia-300">Setup</span>
                                         </h1>
-                                        <p class="text-base md:text-lg font-medium opacity-95 max-w-md leading-relaxed">
-                                            Keyboards, Mice, Headphones and premium accessories for your workstation.
+                                        
+                                        <p class="text-lg md:text-xl text-violet-200 font-medium max-w-lg leading-relaxed">
+                                            Premium mechanical keyboards, high-precision mice, and ergonomic accessories for the ultimate workstation.
                                         </p>
-                                        <div class="flex gap-4">
-                                            <button
-                                                class="bg-white text-[#7C3AED] font-bold py-3.5 px-10 rounded-xl text-lg hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-xl shadow-violet-900/20">
-                                                Shop Now
+                                        
+                                        <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                                            <button class="group px-8 py-4 bg-white text-violet-800 font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-violet-900/20 hover:shadow-violet-900/40 hover:-translate-y-1">
+                                                <span class="flex items-center gap-2">
+                                                    Explore Gear <i class="fas fa-gamepad group-hover:rotate-12 transition-transform"></i>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -183,38 +237,36 @@
                                     <!-- Right Image Area -->
                                     <div class="hidden md:flex w-1/2 h-full items-center justify-center relative">
                                         <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800"
-                                            class="h-[75%] object-contain drop-shadow-2xl rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
+                                            class="h-[400px] object-contain drop-shadow-[0_0_40px_rgba(139,92,246,0.3)] rounded-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500"
                                             alt="Gaming Accessories">
                                     </div>
                                 </div>
                             </div>
 
                             <!-- SLIDE 5: STUDENT OFFER -->
-                            <div class="min-w-full h-full bg-[#0F172A] relative flex items-center">
-                                <!-- Background Decoration -->
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/50 to-transparent"></div>
+                            <div class="min-w-full h-full bg-[#0F172A] relative flex items-center overflow-hidden">
+                                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                                <div class="absolute inset-0 bg-gradient-to-r from-blue-900/40 to-transparent"></div>
 
-                                <div
-                                    class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
+                                <div class="w-full h-full max-w-7xl mx-auto px-6 md:px-16 flex items-center justify-between relative z-10">
                                     <!-- Left Content -->
-                                    <div class="w-full md:w-1/2 text-white space-y-6 md:space-y-8">
-                                        <div
-                                            class="inline-block bg-yellow-500 text-black font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wide mb-2">
-                                            Back to School
+                                    <div class="w-full md:w-1/2 text-white space-y-8 pl-4">
+                                        <div class="inline-block bg-yellow-400 text-black font-bold px-4 py-1.5 rounded-full text-xs uppercase tracking-wide mb-2 shadow-[0_0_20px_rgba(250,204,21,0.4)] animate-pulse">
+                                            Back to School Special
                                         </div>
-                                        <h1 class="text-3xl md:text-5xl font-bold leading-tight tracking-tight">
-                                            Student Special
+                                        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">
+                                            Student
                                             <br>
-                                            <span class="text-2xl md:text-3xl font-bold text-yellow-400">Extra 10%
-                                                OFF</span>
+                                            <span class="text-yellow-400">Discount</span>
                                         </h1>
-                                        <p class="text-base md:text-lg font-medium opacity-95 max-w-md leading-relaxed">
-                                            Get exclusive discounts on laptops with valid Student ID card.
+                                        <p class="text-lg md:text-xl text-gray-300 font-medium max-w-lg leading-relaxed">
+                                            Get an extra <span class="text-yellow-400 font-bold">10% OFF</span> on all laptops with a valid student ID. Invest in your future today.
                                         </p>
-                                        <div class="flex gap-4">
-                                            <button
-                                                class="bg-yellow-400 text-black font-bold py-3.5 px-10 rounded-xl text-lg hover:bg-yellow-300 hover:scale-105 transition-all duration-300">
-                                                Claim Offer
+                                        <div class="flex gap-4 pt-2">
+                                            <button class="group px-8 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-bold rounded-2xl transition-all duration-300 shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/40 hover:-translate-y-1">
+                                                <span class="flex items-center gap-2">
+                                                    Claim Offer <i class="fas fa-graduation-cap group-hover:scale-110 transition-transform"></i>
+                                                </span>
                                             </button>
                                         </div>
                                     </div>
@@ -222,11 +274,9 @@
                                     <!-- Right Image Area -->
                                     <div class="hidden md:flex w-1/2 h-full items-center justify-center relative">
                                         <div class="relative">
-                                            <div
-                                                class="absolute inset-0 bg-yellow-400 rounded-full blur-3xl opacity-20 animate-pulse">
-                                            </div>
+                                            <div class="absolute inset-0 bg-yellow-400 rounded-full blur-[80px] opacity-20 animate-pulse"></div>
                                             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800"
-                                                class="relative h-[300px] object-contain drop-shadow-2xl rounded-2xl transform hover:-translate-y-4 transition-transform duration-500"
+                                                class="relative h-[350px] object-contain drop-shadow-2xl rounded-2xl transform hover:-translate-y-2 transition-transform duration-500 border-4 border-white/5"
                                                 alt="Student Discounts">
                                         </div>
                                     </div>
@@ -236,33 +286,22 @@
                         </div>
 
                         <!-- Navigation Buttons -->
-                        <button
-                            class="nav-btn absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-gray-800 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0"
+                        <button class="nav-btn absolute left-4 md:left-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white w-14 h-14 flex items-center justify-center rounded-full backdrop-blur-md border border-white/10 transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 hover:scale-110"
                             onclick="moveSlide(-1)">
-                            <i class="fas fa-chevron-left"></i>
+                            <i class="fas fa-chevron-left text-xl"></i>
                         </button>
-                        <button
-                            class="nav-btn absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white text-white hover:text-gray-800 w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0"
+                        <button class="nav-btn absolute right-4 md:right-8 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white w-14 h-14 flex items-center justify-center rounded-full backdrop-blur-md border border-white/10 transition-all duration-300 z-30 opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 hover:scale-110"
                             onclick="moveSlide(1)">
-                            <i class="fas fa-chevron-right"></i>
+                            <i class="fas fa-chevron-right text-xl"></i>
                         </button>
 
                         <!-- Pagination -->
-                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-30">
-                            <button class="dot w-12 h-1.5 rounded-full bg-white transition-all duration-300"
-                                onclick="goToSlide(0)"></button>
-                            <button
-                                class="dot w-12 h-1.5 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"
-                                onclick="goToSlide(1)"></button>
-                            <button
-                                class="dot w-12 h-1.5 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"
-                                onclick="goToSlide(2)"></button>
-                            <button
-                                class="dot w-12 h-1.5 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"
-                                onclick="goToSlide(3)"></button>
-                            <button
-                                class="dot w-12 h-1.5 rounded-full bg-white/40 hover:bg-white/60 transition-all duration-300"
-                                onclick="goToSlide(4)"></button>
+                        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30 p-2 rounded-full bg-black/20 backdrop-blur-sm border border-white/5">
+                            <button class="dot w-3 h-3 rounded-full bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(0)"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(1)"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(2)"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(3)"></button>
+                            <button class="dot w-3 h-3 rounded-full bg-white/40 hover:bg-white transition-all duration-300 hover:scale-125" onclick="goToSlide(4)"></button>
                         </div>
 
                     </div>
@@ -495,7 +534,7 @@
                                             const discount = laptop.mrp - laptop.price;
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
-                                            <a href="/laptop/<%= laptop._id %>" 
+                                            <a href="/laptop/<%= laptop.slug %>" 
                                                 class="w-[280px] md:w-[300px] flex-shrink-0 snap-start group block bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
                                                 <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
                                                     <!-- Badges -->
@@ -504,11 +543,14 @@
                                                             <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
                                                                 OUT OF STOCK
                                                             </span>
-                                                        <% } else { %>
-                                                            <span class="bg-white/90 backdrop-blur-sm text-black text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
-                                                                REFURBISHED
-                                                            </span>
                                                         <% } %>
+                                                    </div>
+
+                                                    <!-- Sale Badge -->
+                                                    <div class="absolute top-4 right-4 z-10">
+                                                        <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                            <%= discountPercent %>% OFF
+                                                        </span>
                                                     </div>
 
                                                     <!-- Image -->
@@ -526,6 +568,15 @@
                                                     <p class="text-xs text-gray-400 mb-2 truncate">
                                                         <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
                                                     </p>
+                                                    
+                                                    <!-- Rating Section -->
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="bg-[#1e3a8a] text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">Top Rated</span>
+                                                        <div class="flex items-center gap-1 bg-white border border-gray-200 px-2 py-0.5 rounded-md shadow-sm">
+                                                            <span class="text-xs font-bold text-gray-700">4.7</span>
+                                                            <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                        </div>
+                                                    </div>
                                                     
                                                     <div class="flex items-baseline gap-2">
                                                         <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>
@@ -578,7 +629,7 @@
                                             const discount = laptop.mrp - laptop.price;
                                             const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                             %>
-                                            <a href="/laptop/<%= laptop._id %>" 
+                                            <a href="/laptop/<%= laptop.slug %>" 
                                                 class="w-[280px] md:w-[300px] flex-shrink-0 snap-start group block bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
                                                 <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
                                                     <!-- Badges -->
@@ -587,11 +638,14 @@
                                                             <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
                                                                 OUT OF STOCK
                                                             </span>
-                                                        <% } else { %>
-                                                            <span class="bg-white/90 backdrop-blur-sm text-black text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
-                                                                REFURBISHED
-                                                            </span>
                                                         <% } %>
+                                                    </div>
+
+                                                    <!-- Sale Badge -->
+                                                    <div class="absolute top-4 right-4 z-10">
+                                                        <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                            <%= discountPercent %>% OFF
+                                                        </span>
                                                     </div>
 
                                                     <!-- Image -->
@@ -610,6 +664,15 @@
                                                         <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
                                                     </p>
                                                     
+                                                    <!-- Rating Section -->
+                                                    <div class="flex items-center gap-2 mb-3">
+                                                        <span class="bg-[#1e3a8a] text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">Top Rated</span>
+                                                        <div class="flex items-center gap-1 bg-white border border-gray-200 px-2 py-0.5 rounded-md shadow-sm">
+                                                            <span class="text-xs font-bold text-gray-700">4.7</span>
+                                                            <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="flex items-baseline gap-2">
                                                         <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>
                                                         <span class="text-xs text-gray-400 line-through">₹<%= laptop.mrp.toLocaleString('en-IN') %></span>
@@ -617,16 +680,12 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <% }) %>
-                                                <% } else { %>
-                                                    <div class="p-4 text-gray-500 font-medium">No Dell laptops
-                                                        currently
-                                                        available</div>
-                                                    <% } %>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div class="p-4 text-gray-500 font-medium">No Dell laptops currently available</div>
+                                <% } %>
                             </div>
                         </section>
-
-
 
                         <!-- HP SECTION -->
                         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -656,135 +715,66 @@
                             <div id="hp-scroll"
                                 class="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory no-scrollbar scroll-smooth p-2">
                                 <% const hpLaptops=laptops ? laptops.filter(l=> l.brand === 'HP') : []; %>
-                                    <% if(hpLaptops.length> 0) { %>
-                                        <% hpLaptops.forEach((laptop)=> {
-                                            const discount = laptop.mrp - laptop.price;
-                                            const discountPercent = Math.round((discount / laptop.mrp) * 100);
-                                            %>
-                                            <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
-                                                <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
-                                                <!-- Header Badges -->
-                                                <div class="flex justify-between items-start w-full relative z-10 mb-2">
-                                                    <% if (laptop.stockQuantity> 0 && laptop.status !== 'Out of Stock')
-                                                        { %>
-                                                        <div
-                                                            class="bg-gray-900 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
-                                                            <i
-                                                                class="fas fa-check-circle text-cyan-400 text-[10px]"></i>
-                                                            <span>RG COMPUTERS ASSURED</span>
-                                                        </div>
-                                                        <% } %>
-                                                            <% if(laptop.stockQuantity < 5 && laptop.stockQuantity>
-                                                                0) { %>
-                                                                <div
-                                                                    class="border border-red-500 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded">
-                                                                    <%= laptop.stockQuantity %> left
-                                                                </div>
-                                                                <% } %>
-                                                </div>
-
-                                                <!-- Image -->
-                                                <div
-                                                    class="relative w-full h-48 mb-3 flex items-center justify-center bg-gray-50 rounded-lg p-4 overflow-hidden">
-                                                    <% if (laptop.stockQuantity===0 || laptop.status==='Out of Stock' )
-                                                        { %>
-                                                        <div
-                                                            class="absolute top-3 left-1/2 -translate-x-1/2 bg-red-600/95 text-white text-sm font-bold px-4 py-1 rounded-md shadow-md -skew-x-6 transform pointer-events-none">
-                                                            Out of Stock
-                                                        </div>
-                                                        <% } %>
-                                                            <img src="<%= laptop.imageUrls[0] %>"
-                                                                alt="<%= laptop.brand %> <%= laptop.model %>"
-                                                                class="h-full w-full object-cover mix-blend-multiply transition-transform duration-300 group-hover:scale-105">
-                                                </div>
-
-                                                <!-- Discount Tag -->
-                                                <div class="mb-2">
-                                                    <span
-                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
-                                                        <%= discount.toLocaleString('en-IN') %> OFF
+                                <% if(hpLaptops.length > 0) { %>
+                                    <% hpLaptops.forEach((laptop)=> {
+                                        const discount = laptop.mrp - laptop.price;
+                                        const discountPercent = Math.round((discount / laptop.mrp) * 100);
+                                    %>
+                                    <a href="/laptop/<%= laptop.slug %>" 
+                                        class="w-[280px] md:w-[300px] flex-shrink-0 snap-start group block bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                                        <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                                            <!-- Badges -->
+                                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                                <% if (laptop.stockQuantity === 0) { %>
+                                                    <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                        OUT OF STOCK
                                                     </span>
-                                                </div>
-
-                                                <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
-                                                        <%= laptop.model %>
-                                                            <%= laptop.specifications.processor %>
-                                                </h3>
-                                                <!-- Specs -->
-                                                <div class="flex flex-wrap gap-2 mb-3">
-                                                    <% if(laptop.specifications.ram) { %>
-                                                        <span
-                                                            class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                            <%= laptop.specifications.ram %>
-                                                        </span>
-                                                        <% } %>
-                                                            <% if(laptop.specifications.storage) { %>
-                                                                <span
-                                                                    class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                    <%= laptop.specifications.storage %>
-                                                                </span>
-                                                                <% } %>
-                                                                    <% if(laptop.specifications.processor) { %>
-                                                                        <span
-                                                                            class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                            <%= laptop.specifications.processor %>
-                                                                        </span>
-                                                                        <% } %>
-                                                </div>
-
-                                                <!-- Rating Section -->
-                                                <div class="flex items-center gap-2 mb-3 mt-auto">
-                                                    <span
-                                                        class="bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded">Top
-                                                        Rated</span>
-                                                    <div
-                                                        class="border border-gray-200 px-1 py-0.5 rounded flex items-center gap-1">
-                                                        <span class="text-xs font-bold text-gray-700">4.7</span>
-                                                        <i class="fas fa-star text-yellow-400 text-[10px]"></i>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Price Section -->
-                                                <div class="flex flex-col gap-1 mt-2">
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
-                                                                laptop.price.toLocaleString('en-IN') %></span>
-                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
-                                                            -<%= discountPercent %>%
-                                                        </span>
-                                                    </div>
-                                                    <span
-                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
-                                                        <%= laptop.mrp.toLocaleString('en-IN') %>
-                                                    </span>
-                                                </div>
-                                                <% if (laptop.stockQuantity> 0 && laptop.status !== 'Out of Stock')
-                                                    { %>
-                                                    <form action="/cart" method="POST"
-                                                        class="absolute bottom-4 right-4 z-20 transition-opacity duration-300">
-                                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
-                                                        <button type="submit"
-                                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark shadow-lg hover:scale-110 transition-all"
-                                                            title="Add to Cart">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </button>
-                                                    </form>
-                                                    <% } else { %>
-                                                        <button disabled
-                                                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-gray-300 text-white flex items-center justify-center cursor-not-allowed"
-                                                            title="Out of Stock">
-                                                            <i class="fas fa-ban"></i>
-                                                        </button>
-                                                        <% } %>
+                                                <% } %>
                                             </div>
-                                            <% }) %>
-                                                <% } else { %>
-                                                    <div class="p-4 text-gray-500 font-medium">No HP laptops
-                                                        currently
-                                                        available</div>
-                                                    <% } %>
+
+                                            <!-- Sale Badge -->
+                                            <div class="absolute top-4 right-4 z-10">
+                                                <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                    <%= discountPercent %>% OFF
+                                                </span>
+                                            </div>
+
+                                            <!-- Image -->
+                                            <div class="aspect-[4/3] flex items-center justify-center">
+                                                <img src="<%= laptop.imageUrls[0] %>" 
+                                                     alt="<%= laptop.model %>" 
+                                                     class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2">
+                                            <h3 class="font-bold text-gray-900 mb-1 leading-tight group-hover:text-cyan-700 transition-colors line-clamp-2 h-10">
+                                                <%= laptop.model %>
+                                            </h3>
+                                            <p class="text-xs text-gray-400 mb-2 truncate">
+                                                <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
+                                            </p>
+                                            
+                                            <!-- Rating Section -->
+                                            <div class="flex items-center gap-2 mb-3">
+                                                <span class="bg-[#1e3a8a] text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">Top Rated</span>
+                                                <div class="flex items-center gap-1 bg-white border border-gray-200 px-2 py-0.5 rounded-md shadow-sm">
+                                                    <span class="text-xs font-bold text-gray-700">4.7</span>
+                                                    <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex items-baseline gap-2">
+                                                <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>
+                                                <span class="text-xs text-gray-400 line-through">₹<%= laptop.mrp.toLocaleString('en-IN') %></span>
+                                                <span class="text-xs font-bold text-green-600"><%= discountPercent %>% OFF</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div class="p-4 text-gray-500 font-medium">No HP laptops currently available</div>
+                                <% } %>
                             </div>
                         </section>
 
@@ -817,135 +807,66 @@
                             <div id="lenovo-scroll"
                                 class="flex overflow-x-auto gap-4 pb-6 snap-x snap-mandatory no-scrollbar scroll-smooth">
                                 <% const lenovoLaptops=laptops ? laptops.filter(l=> l.brand === 'Lenovo') : []; %>
-                                    <% if(lenovoLaptops.length> 0) { %>
-                                        <% lenovoLaptops.forEach((laptop)=> {
-                                            const discount = laptop.mrp - laptop.price;
-                                            const discountPercent = Math.round((discount / laptop.mrp) * 100);
-                                            %>
-                                            <div
-                                                class="w-[280px] md:w-[300px] flex-shrink-0 bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 snap-start flex flex-col relative group">
-                                                <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
-                                                <!-- Header Badges -->
-                                                <div class="flex justify-between items-start w-full relative z-10 mb-2">
-                                                    <% if (laptop.stockQuantity> 0 && laptop.status !== 'Out of Stock')
-                                                        { %>
-                                                        <div
-                                                            class="bg-gray-900 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
-                                                            <i
-                                                                class="fas fa-check-circle text-cyan-400 text-[10px]"></i>
-                                                            <span>RG COMPUTERS ASSURED</span>
-                                                        </div>
-                                                        <% } %>
-                                                            <% if(laptop.stockQuantity < 5 && laptop.stockQuantity>
-                                                                0) { %>
-                                                                <div
-                                                                    class="border border-red-500 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded">
-                                                                    <%= laptop.stockQuantity %> left
-                                                                </div>
-                                                                <% } %>
-                                                </div>
-
-                                                <!-- Image -->
-                                                <div
-                                                    class="relative w-full h-48 mb-3 flex items-center justify-center bg-gray-50 rounded-lg p-4 overflow-hidden">
-                                                    <% if (laptop.stockQuantity===0 || laptop.status==='Out of Stock' )
-                                                        { %>
-                                                        <div
-                                                            class="absolute top-3 left-1/2 -translate-x-1/2 bg-red-600/95 text-white text-sm font-bold px-4 py-1 rounded-md shadow-md -skew-x-6 transform pointer-events-none">
-                                                            Out of Stock
-                                                        </div>
-                                                        <% } %>
-                                                            <img src="<%= laptop.imageUrls[0] %>"
-                                                                alt="<%= laptop.brand %> <%= laptop.model %>"
-                                                                class="h-full w-full object-cover mix-blend-multiply transition-transform duration-300 group-hover:scale-105">
-                                                </div>
-
-                                                <!-- Discount Tag -->
-                                                <div class="mb-2">
-                                                    <span
-                                                        class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
-                                                        <%= discount.toLocaleString('en-IN') %> OFF
+                                <% if(lenovoLaptops.length > 0) { %>
+                                    <% lenovoLaptops.forEach((laptop)=> {
+                                        const discount = laptop.mrp - laptop.price;
+                                        const discountPercent = Math.round((discount / laptop.mrp) * 100);
+                                    %>
+                                    <a href="/laptop/<%= laptop.slug %>" 
+                                        class="w-[280px] md:w-[300px] flex-shrink-0 snap-start group block bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300">
+                                        <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                                            <!-- Badges -->
+                                            <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                                <% if (laptop.stockQuantity === 0) { %>
+                                                    <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                        OUT OF STOCK
                                                     </span>
-                                                </div>
-
-                                                <!-- Title -->
-                                                <h3 class="font-bold text-gray-900 text-base leading-tight mb-2 h-10 overflow-hidden text-ellipsis line-clamp-2">
-                                                        <%= laptop.model %>
-                                                            <%= laptop.specifications.processor %>
-                                                </h3>
-                                                <!-- Specs -->
-                                                <div class="flex flex-wrap gap-2 mb-3">
-                                                    <% if(laptop.specifications.ram) { %>
-                                                        <span
-                                                            class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                            <%= laptop.specifications.ram %>
-                                                        </span>
-                                                        <% } %>
-                                                            <% if(laptop.specifications.storage) { %>
-                                                                <span
-                                                                    class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                    <%= laptop.specifications.storage %>
-                                                                </span>
-                                                                <% } %>
-                                                                    <% if(laptop.specifications.processor) { %>
-                                                                        <span
-                                                                            class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                            <%= laptop.specifications.processor %>
-                                                                        </span>
-                                                                        <% } %>
-                                                </div>
-
-                                                <!-- Rating Section -->
-                                                <div class="flex items-center gap-2 mb-3 mt-auto">
-                                                    <span
-                                                        class="bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded">Business
-                                                        Class</span>
-                                                    <div
-                                                        class="border border-gray-200 px-1 py-0.5 rounded flex items-center gap-1">
-                                                        <span class="text-xs font-bold text-gray-700">4.8</span>
-                                                        <i class="fas fa-star text-yellow-400 text-[10px]"></i>
-                                                    </div>
-                                                </div>
-
-                                                <!-- Price Section -->
-                                                <div class="flex flex-col gap-1 mt-2">
-                                                    <div class="flex items-center gap-2">
-                                                        <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
-                                                                laptop.price.toLocaleString('en-IN') %></span>
-                                                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
-                                                            -<%= discountPercent %>%
-                                                        </span>
-                                                    </div>
-                                                    <span
-                                                        class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
-                                                        <%= laptop.mrp.toLocaleString('en-IN') %>
-                                                    </span>
-                                                </div>
-                                                <% if (laptop.stockQuantity> 0 && laptop.status !== 'Out of Stock')
-                                                    { %>
-                                                    <form action="/cart" method="POST"
-                                                        class="absolute bottom-4 right-4 z-20 transition-opacity duration-300">
-                                                        <input type="hidden" name="productId" value="<%= laptop._id %>">
-                                                        <button type="submit"
-                                                            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center hover:bg-primary-dark shadow-lg hover:scale-110 transition-all"
-                                                            title="Add to Cart">
-                                                            <i class="fas fa-cart-plus"></i>
-                                                        </button>
-                                                    </form>
-                                                    <% } else { %>
-                                                        <button disabled
-                                                            class="absolute bottom-4 right-4 z-20 w-10 h-10 rounded-full bg-gray-300 text-white flex items-center justify-center cursor-not-allowed"
-                                                            title="Out of Stock">
-                                                            <i class="fas fa-ban"></i>
-                                                        </button>
-                                                        <% } %>
+                                                <% } %>
                                             </div>
-                                            <% }) %>
-                                                <% } else { %>
-                                                    <div class="p-4 text-gray-500 font-medium">No Lenovo laptops
-                                                        currently
-                                                        available</div>
-                                                    <% } %>
+
+                                            <!-- Sale Badge -->
+                                            <div class="absolute top-4 right-4 z-10">
+                                                <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                    <%= discountPercent %>% OFF
+                                                </span>
+                                            </div>
+
+                                            <!-- Image -->
+                                            <div class="aspect-[4/3] flex items-center justify-center">
+                                                <img src="<%= laptop.imageUrls[0] %>" 
+                                                     alt="<%= laptop.model %>" 
+                                                     class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                                            </div>
+                                        </div>
+
+                                        <div class="px-2">
+                                            <h3 class="font-bold text-gray-900 mb-1 leading-tight group-hover:text-cyan-700 transition-colors line-clamp-2 h-10">
+                                                <%= laptop.model %>
+                                            </h3>
+                                            <p class="text-xs text-gray-400 mb-2 truncate">
+                                                <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
+                                            </p>
+                                            
+                                            <!-- Rating Section -->
+                                            <div class="flex items-center gap-2 mb-3">
+                                                <span class="bg-[#1e3a8a] text-white text-[10px] font-bold px-2.5 py-1 rounded-md shadow-sm">Top Rated</span>
+                                                <div class="flex items-center gap-1 bg-white border border-gray-200 px-2 py-0.5 rounded-md shadow-sm">
+                                                    <span class="text-xs font-bold text-gray-700">4.7</span>
+                                                    <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex items-baseline gap-2">
+                                                <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>
+                                                <span class="text-xs text-gray-400 line-through">₹<%= laptop.mrp.toLocaleString('en-IN') %></span>
+                                                <span class="text-xs font-bold text-green-600"><%= discountPercent %>% OFF</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <% }) %>
+                                <% } else { %>
+                                    <div class="p-4 text-gray-500 font-medium">No Lenovo laptops currently available</div>
+                                <% } %>
                             </div>
                         </section>
 
@@ -1208,7 +1129,7 @@
                                     const discount = desktop.mrp - desktop.price;
                                     const discountPercent = Math.round((discount / desktop.mrp) * 100);
                                     %>
-                                    <a href="/laptop/<%= desktop._id %>"
+                                    <a href="/laptop/<%= desktop.slug %>"
                                         class="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group relative">
                                         <!-- Header Badges -->
                                         <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -1218,7 +1139,14 @@
                                             </span>
                                         </div>
 
-                                        <!-- Image -->
+                                        <!-- Sale Badge -->
+                                                <div class="absolute top-4 right-4 z-10">
+                                                    <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                        <%= discountPercent %>% OFF
+                                                    </span>
+                                                </div>
+
+                                                <!-- Image -->
                                         <div
                                             class="relative w-full h-48 mb-3 flex items-center justify-center bg-gray-50 rounded-lg p-4 overflow-hidden">
                                             <% if (desktop.stockQuantity===0 || desktop.status==='Out of Stock' ) { %>
@@ -1314,7 +1242,7 @@
                                     const discount = monitor.mrp - monitor.price;
                                     const discountPercent = Math.round((discount / monitor.mrp) * 100);
                                     %>
-                                    <a href="/monitor/<%= monitor._id %>"
+                                    <a href="/monitor/<%= monitor.slug %>"
                                         class="bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group relative">
                                         <!-- Header Badges -->
                                         <div class="flex justify-between items-start w-full relative z-10 mb-2">
@@ -1324,7 +1252,14 @@
                                             </span>
                                         </div>
 
-                                        <!-- Image -->
+                                        <!-- Sale Badge -->
+                                                <div class="absolute top-4 right-4 z-10">
+                                                    <span class="bg-cyan-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                        <%= discountPercent %>% OFF
+                                                    </span>
+                                                </div>
+
+                                                <!-- Image -->
                                         <div
                                             class="relative w-full h-48 mb-3 flex items-center justify-center bg-gray-50 rounded-lg p-4 overflow-hidden">
                                             <% if (monitor.stockQuantity===0 || monitor.status==='Out of Stock' ) { %>

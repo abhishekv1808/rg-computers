@@ -73,15 +73,15 @@ exports.getLaptopsByBrand = async (req, res, next) => {
 
 exports.getMonitorDetail = async (req, res, next) => {
     try {
-        const monitorId = req.params.id;
-        const monitor = await Laptop.findById(monitorId);
+        const monitorSlug = req.params.slug;
+        const monitor = await Laptop.findOne({ slug: monitorSlug });
 
         if (!monitor || monitor.category !== 'Monitor') {
             return res.redirect('/monitors');
         }
 
         const similarMonitors = await Laptop.find({
-            _id: { $ne: monitorId },
+            _id: { $ne: monitor._id },
             category: 'Monitor'
         }).limit(4);
 
@@ -125,19 +125,19 @@ exports.getBlogDetail = async (req, res, next) => {
 
 exports.getProductDetail = async (req, res, next) => {
     try {
-        const laptopId = req.params.id;
-        const laptop = await Laptop.findById(laptopId);
+        const laptopSlug = req.params.slug;
+        const laptop = await Laptop.findOne({ slug: laptopSlug });
 
         if (!laptop) {
             return res.redirect('/');
         }
 
         if (laptop.category === 'Monitor') {
-            return res.redirect('/monitor/' + laptopId);
+            return res.redirect('/monitor/' + laptopSlug);
         }
 
         const similarLaptops = await Laptop.find({
-            _id: { $ne: laptopId },
+            _id: { $ne: laptop._id },
             $or: [
                 { brand: laptop.brand },
                 { category: laptop.category }

@@ -16,301 +16,232 @@
                 <!-- Scrollable Main -->
                 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-[#FAFBFD] p-8">
                     
+                    <!-- Dashboard Header & Actions -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                        <div>
+                           <p class="text-gray-500 text-sm">Here is today's report and performances</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a href="/admin/add-laptop" class="px-4 py-2 bg-red-800 text-white rounded-lg text-sm font-bold hover:bg-red-900 transition-colors flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-laptop"></i> Add Laptop
+                            </a>
+                            <a href="/admin/add-monitor" class="px-4 py-2 bg-red-800 text-white rounded-lg text-sm font-bold hover:bg-red-900 transition-colors flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-desktop"></i> Add Monitor
+                            </a>
+                            <a href="#" class="px-4 py-2 bg-red-800 text-white rounded-lg text-sm font-bold hover:bg-red-900 transition-colors flex items-center gap-2 shadow-sm">
+                                <i class="fas fa-hdd"></i> Add Desktop
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Stats Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                         
-                        <!-- Card 1: Out of Stock -->
-                        <div class="bg-white border border-gray-100 rounded-3xl p-6 transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary shadow-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-                                <i class="fas fa-times-circle"></i>
+                        <!-- Card 1: Total Inventory -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-gray-500 text-sm font-bold">Total Inventory</h3>
+                                <button class="text-gray-300 hover:text-gray-500"><i class="fas fa-ellipsis-h"></i></button>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900"><%= outOfStock %></h3>
-                            <p class="text-gray-500 font-semibold text-sm mb-1">Out of Stock</p>
-                            <p class="text-red-500 text-xs font-medium">Restock needed</p>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-gray-900"><%= totalLaptops %></span>
+                                <span class="text-sm text-gray-500">Items</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs font-bold text-emerald-500">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+12% from last month</span>
+                            </div>
+                            <!-- Background decoration -->
+                            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-red-50 rounded-full opacity-50 group-hover:scale-110 transition-transform"></div>
                         </div>
 
-                        <!-- Card 2: Low Stock -->
-                        <div class="bg-white border border-gray-100 rounded-3xl p-6 transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary shadow-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-                                <i class="fas fa-exclamation-triangle"></i>
+                        <!-- Card 2: Out of Stock -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-gray-500 text-sm font-bold">Out of Stock</h3>
+                                <button class="text-gray-300 hover:text-gray-500"><i class="fas fa-ellipsis-h"></i></button>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900"><%= lowStock %></h3>
-                            <p class="text-gray-500 font-semibold text-sm mb-1">Low Stock</p>
-                            <p class="text-orange-500 text-xs font-medium">Order soon</p>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-gray-900"><%= outOfStock %></span>
+                                <span class="text-sm text-gray-500">Items</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs font-bold text-red-500">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>Needs Attention</span>
+                            </div>
+                             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-red-50 rounded-full opacity-50 group-hover:scale-110 transition-transform"></div>
                         </div>
 
-                        <!-- Card 3: Inventory Value -->
-                        <div class="bg-white border border-gray-100 rounded-3xl p-6 transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary shadow-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-                                <i class="fas fa-rupee-sign"></i>
+                        <!-- Card 3: New Enquiries (Mock) -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-gray-500 text-sm font-bold">New Enquiries</h3>
+                                <button class="text-gray-300 hover:text-gray-500"><i class="fas fa-ellipsis-h"></i></button>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900">₹<%= (totalValue / 1000).toFixed(1) %>k</h3>
-                            <p class="text-gray-500 font-semibold text-sm mb-1">Total Value</p>
-                            <p class="text-green-500 text-xs font-medium">Current Assets</p>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-gray-900">1</span>
+                                <span class="text-sm text-gray-500">Pending</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs font-bold text-red-500">
+                                <i class="fas fa-envelope"></i>
+                                <span>Needs Response</span>
+                            </div>
+                             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-red-50 rounded-full opacity-50 group-hover:scale-110 transition-transform"></div>
                         </div>
 
-                        <!-- Card 4: Total Products -->
-                        <div class="bg-white border border-gray-100 rounded-3xl p-6 transition-transform hover:-translate-y-1 shadow-sm hover:shadow-md group">
-                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary shadow-sm mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
-                                <i class="fas fa-box"></i>
+                        <!-- Card 4: Inventory Value -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-gray-500 text-sm font-bold">Inventory Value</h3>
+                                <button class="text-gray-300 hover:text-gray-500"><i class="fas fa-ellipsis-h"></i></button>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900"><%= totalLaptops %></h3>
-                            <p class="text-gray-500 font-semibold text-sm mb-1">Total Products</p>
-                            <p class="text-primary text-xs font-medium"><%= uniqueBrands %> Brands</p>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-gray-900">₹<%= (totalValue / 1000).toFixed(1) %>L</span>
+                            </div>
+                            <div class="flex items-center gap-1 text-xs font-bold text-emerald-500">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>+5% from last quarter</span>
+                            </div>
+                             <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-red-50 rounded-full opacity-50 group-hover:scale-110 transition-transform"></div>
                         </div>
 
                     </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                <!-- Left Column: Main Inventory Table -->
-                <div class="lg:col-span-2 bg-white rounded-[32px] shadow-xl shadow-gray-200/50 border border-white/50 flex flex-col overflow-hidden">
-
-                    <!-- Table Header -->
-                    <div class="p-8 border-b border-gray-100 flex items-center justify-between">
-                        <div>
-                            <h2 class="text-xl font-bold text-gray-900 tracking-tight">Laptop Inventory</h2>
-                            <p class="text-sm text-gray-400 font-medium mt-1">Manage your active stock</p>
-                        </div>
-                        <a href="/admin/inventory" class="text-sm font-bold text-primary hover:text-primary-dark transition-colors flex items-center gap-2">
-                            View All <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-
-                    <!-- Table Content -->
-                    <div class="overflow-x-auto">
-                        <table class="w-full whitespace-nowrap text-left">
-                            <thead>
-                                <tr class="bg-gray-50/50">
-                                    <th class="px-8 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest">Product</th>
-                                    <th class="px-6 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest">Price</th>
-                                    <th class="px-6 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest">Specs</th>
-                                    <th class="px-6 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest">Status</th>
-                                    <th class="px-8 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest text-right">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-100">
-                                <% if (laptops.length > 0) { %>
-                                    <% laptops.forEach(laptop => { %>
-                                        <tr class="group hover:bg-primary/[0.02] transition-colors">
-                                            <td class="px-8 py-5">
-                                                <div class="flex items-center gap-4">
-                                                    <div class="h-12 w-12 flex-shrink-0 relative">
-                                                        <% const displayImage = (laptop.imageUrls && laptop.imageUrls.length > 0) ? laptop.imageUrls[0] : (laptop.imageUrl || 'https://via.placeholder.com/150'); %>
-                                                        <img class="h-12 w-12 rounded-xl object-contain border border-gray-100 bg-white p-1" src="<%= displayImage %>" alt="">
-                                                    </div>
-                                                    <div>
-                                                        <div class="text-sm font-bold text-gray-900 line-clamp-1"><%= laptop.model %></div>
-                                                        <div class="text-xs text-gray-500 font-medium mt-0.5"><%= laptop.brand %></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-5">
-                                                <div class="text-sm font-bold text-primary">&#8377;<%= laptop.price.toLocaleString('en-IN') %></div>
-                                            </td>
-                                            <td class="px-6 py-5">
-                                                <div class="flex flex-col gap-1.5">
-                                                    <div class="flex items-center gap-2">
-                                                        <i class="fas fa-microchip text-[10px] text-gray-400"></i>
-                                                        <span class="text-xs font-semibold text-gray-600"><%= laptop.specifications.processor %></span>
-                                                    </div>
-                                                    <div class="flex items-center gap-2">
-                                                        <i class="fas fa-memory text-[10px] text-gray-400"></i>
-                                                        <span class="text-xs text-gray-500 font-medium"><%= laptop.specifications.ram %></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-5">
-                                                <% 
-                                                let statusStyles = 'bg-gray-50 text-gray-600 ring-gray-500/10';
-                                                let statusIcon = 'fa-circle';
-                                                
-                                                if (laptop.status === 'In Stock') {
-                                                    statusStyles = 'bg-emerald-50 text-emerald-700 ring-emerald-600/20';
-                                                    statusIcon = 'fa-check-circle';
-                                                } else if (laptop.status === 'Low Stock') {
-                                                    statusStyles = 'bg-amber-50 text-amber-700 ring-amber-600/20';
-                                                    statusIcon = 'fa-exclamation-circle';
-                                                } else if (laptop.status === 'Out of Stock') {
-                                                    statusStyles = 'bg-red-50 text-red-700 ring-red-600/20';
-                                                    statusIcon = 'fa-times-circle';
-                                                }
-                                                %>
-                                                <div class="flex flex-col items-start gap-1">
-                                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold ring-1 <%= statusStyles %>">
-                                                        <i class="fas <%= statusIcon %> text-[9px]"></i>
-                                                        <%= laptop.status || 'In Stock' %>
-                                                    </span>
-                                                    <% if (laptop.stockQuantity > 0) { %>
-                                                        <span class="text-[10px] text-gray-400 font-medium ml-1">
-                                                            <%= laptop.stockQuantity %> units left
-                                                        </span>
-                                                    <% } %>
-                                                </div>
-                                            </td>
-                                            <td class="px-8 py-5 text-right">
-                                                <div class="flex justify-end items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-200">
-                                                    <a href="/admin/edit-laptop/<%= laptop._id %>?edit=true" 
-                                                       class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:text-primary hover:bg-primary/5 transition-colors" title="Edit">
-                                                        <i class="fas fa-pen text-xs"></i>
-                                                    </a>
-                                                    <form action="/admin/delete-laptop" method="POST" class="inline" onsubmit="return confirm('Delete this laptop?');">
-                                                        <input type="hidden" name="laptopId" value="<%= laptop._id %>">
-                                                        <button type="submit" class="w-8 h-8 flex items-center justify-center rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Delete">
-                                                            <i class="fas fa-trash text-xs"></i>
-                                                        </button>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <% }) %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="5" class="px-8 py-16 text-center">
-                                            <div class="flex flex-col items-center justify-center">
-                                                <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
-                                                    <i class="fas fa-search text-gray-300 text-xl"></i>
-                                                </div>
-                                                <h3 class="text-gray-900 font-bold mb-1">No products found</h3>
-                                                <p class="text-gray-500 text-sm">Try adding some inventory first.</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Pagination -->
-                    <% if (totalLaptops > 0) { %>
-                        <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between">
-                            <p class="text-xs text-gray-500">
-                                Showing 
-                                <span class="font-medium"><%= (currentPage - 1) * 10 + 1 %></span> 
-                                to 
-                                <span class="font-medium"><%= Math.min(currentPage * 10, totalLaptops) %></span> 
-                                of 
-                                <span class="font-medium"><%= totalLaptops %></span> 
-                                items
-                            </p>
-                            <div class="flex gap-2">
-                                <% if (hasPreviousPage) { %>
-                                    <a href="/admin/dashboard?page=<%= previousPage %>" 
-                                       class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors" title="Previous">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </a>
-                                <% } else { %>
-                                    <button disabled 
-                                        class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
-                                        <i class="fas fa-chevron-left"></i>
-                                    </button>
-                                <% } %>
-
-                                <div class="flex items-center px-2">
-                                    <span class="text-sm font-medium text-gray-700">Page <%= currentPage %> of <%= lastPage %></span>
-                                </div>
-
-                                <% if (hasNextPage) { %>
-                                    <a href="/admin/dashboard?page=<%= nextPage %>" 
-                                       class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 transition-colors" title="Next">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </a>
-                                <% } else { %>
-                                    <button disabled 
-                                        class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
-                                        <i class="fas fa-chevron-right"></i>
-                                    </button>
-                                <% } %>
-                            </div>
-                        </div>
-                    <% } %>
-                </div>
-
-                <!-- Right Column: Charts & Insights -->
-                <div class="space-y-6">
-                    
-                    <!-- Brand Inventory Chart -->
-                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-lg font-bold text-gray-800">Brand Inventory</h3>
-                            <button class="text-gray-400 hover:text-blue-600"><i class="fas fa-ellipsis-h"></i></button>
-                        </div>
+                    <!-- Charts Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
                         
-                        <div class="relative h-64 w-full">
-                            <canvas id="brandChart"></canvas>
-                            <!-- Center Text Overlay -->
-                            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span class="text-3xl font-bold text-gray-900" id="totalLaptopsCount">0</span>
-                                <span class="text-xs text-gray-500 font-medium uppercase tracking-wide">Products</span>
+                        <!-- Stock Performance (Bar Chart) -->
+                        <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-gray-900">Stock Performance</h3>
+                                <select class="text-xs border-gray-200 rounded-lg text-gray-500 focus:ring-0 cursor-pointer bg-gray-50 border px-2 py-1">
+                                    <option>Weekly</option>
+                                    <option>Monthly</option>
+                                    <option>Yearly</option>
+                                </select>
+                            </div>
+                            <div class="h-64 w-full">
+                                <canvas id="stockChart"></canvas>
                             </div>
                         </div>
 
-                        <!-- Custom Legend Container -->
-                        <div id="chartLegend" class="mt-6 grid grid-cols-2 gap-3 text-xs"></div>
-                    </div>
-
-                    <!-- Customer Satisfaction Mock -->
-                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                        <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-bold text-gray-800">Customer Satisfaction</h3>
-                            <i class="fas fa-smile text-blue-500 bg-blue-50 p-2 rounded-lg"></i>
-                        </div>
-                        <div class="h-40 w-full bg-gradient-to-b from-blue-50 to-transparent rounded-xl border-b border-blue-200 flex items-end justify-between px-2 pb-0 relative overflow-hidden">
-                            <!-- Mock Wave Line -->
-                             <svg class="absolute bottom-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                                <path d="M0 70 Q 25 30 50 60 T 100 40 L 100 100 L 0 100 Z" fill="#ebf8ff" stroke="none" />
-                                <path d="M0 70 Q 25 30 50 60 T 100 40" fill="none" stroke="#3b82f6" stroke-width="3" />
-                             </svg>
-                             <div class="relative z-10 w-full flex justify-between px-4 pb-4">
-                                <div class="text-center">
-                                    <p class="text-xs text-gray-400">Last Month</p>
-                                    <p class="font-bold text-gray-700">$3,004</p>
+                        <!-- Category Split (Doughnut Chart) -->
+                        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-gray-900">Category Split</h3>
+                                <button class="text-gray-300 hover:text-gray-500"><i class="fas fa-calendar"></i></button>
+                            </div>
+                            <div class="relative flex-1 flex items-center justify-center min-h-[200px]">
+                                <canvas id="brandChart"></canvas>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                    <span class="text-3xl font-bold text-gray-900" id="totalLaptopsCount">0</span>
+                                    <span class="text-xs text-gray-500 font-medium">Total Items</span>
                                 </div>
-                                <div class="text-center">
-                                    <div class="h-8 w-[1px] bg-gray-200 mx-auto mb-1"></div>
-                                    <p class="text-xs text-gray-400">This Month</p>
-                                    <p class="font-bold text-blue-600">$4,504</p>
-                                </div>
-                             </div>
+                            </div>
+                             <div class="mt-4">
+                                <button class="w-full py-2 border border-gray-200 rounded-xl text-xs font-bold text-gray-500 hover:bg-gray-50 transition-colors">
+                                    View Full Details
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                </div>
-            </div> <!-- End Grid -->
-            
-            <!-- Scripts -->
+                    <!-- Recent Inventory Table -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-6 border-b border-gray-50 flex items-center justify-between">
+                            <h3 class="text-lg font-bold text-gray-900">Recent Inventory</h3>
+                            <select class="text-xs border-gray-200 rounded-lg text-gray-500 focus:ring-0 cursor-pointer bg-gray-50 border px-2 py-1">
+                                <option>All Items</option>
+                                <option>In Stock</option>
+                                <option>Out of Stock</option>
+                            </select>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full whitespace-nowrap text-left">
+                                <thead class="bg-gray-50/50">
+                                    <tr>
+                                        <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Product</th>
+                                        <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Price</th>
+                                        <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Specs</th>
+                                        <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider">Status</th>
+                                        <th class="px-6 py-4 text-xs font-bold text-gray-400 uppercase tracking-wider text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-50">
+                                    <% if (laptops.length > 0) { %>
+                                        <% laptops.slice(0, 5).forEach(laptop => { %>
+                                            <tr class="group hover:bg-gray-50/50 transition-colors">
+                                                <td class="px-6 py-4 whitespace-normal min-w-[300px]">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="h-10 w-10 rounded-lg bg-gray-100 flex-shrink-0 p-1 border border-gray-200">
+                                                            <% const displayImage = (laptop.imageUrls && laptop.imageUrls.length > 0) ? laptop.imageUrls[0] : (laptop.imageUrl || 'https://via.placeholder.com/150'); %>
+                                                            <img src="<%= displayImage %>" class="w-full h-full object-contain">
+                                                        </div>
+                                                        <div>
+                                                            <div class="text-sm font-bold text-gray-900"><%= laptop.model %></div>
+                                                            <div class="text-xs text-gray-500"><%= laptop.brand %></div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <span class="text-sm font-bold text-gray-900">&#8377;<%= laptop.price.toLocaleString('en-IN') %></span>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="text-xs text-gray-500">
+                                                        <span class="font-medium text-gray-700"><%= laptop.specifications.processor %></span> / <%= laptop.specifications.ram %>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <% 
+                                                    let statusColor = 'text-gray-500 bg-gray-100';
+                                                    if (laptop.status === 'In Stock') statusColor = 'text-emerald-600 bg-emerald-50';
+                                                    else if (laptop.status === 'Low Stock') statusColor = 'text-amber-600 bg-amber-50';
+                                                    else if (laptop.status === 'Out of Stock') statusColor = 'text-red-600 bg-red-50';
+                                                    %>
+                                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold <%= statusColor %>">
+                                                        <%= laptop.status %>
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4 text-right">
+                                                    <a href="/admin/edit-laptop/<%= laptop._id %>?edit=true" class="text-gray-400 hover:text-blue-600 transition-colors">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <% }) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    const ctx = document.getElementById('brandChart').getContext('2d');
-                    // Safely parse EJS data
+                    // --- Doughnut Chart (Category Split) ---
+                    const ctxBrand = document.getElementById('brandChart').getContext('2d');
                     const brandData = <%- JSON.stringify(brandData || { labels: [], data: [] }) %>;
                     const totalItems = brandData.data.reduce((a, b) => a + b, 0);
                     
-                    // Update center text
                     document.getElementById('totalLaptopsCount').textContent = totalItems;
 
-                    // Palette
-                    const colors = [
-                        '#3B82F6', // Blue 500
+                    const brandColors = [
+                        '#B91C1C', // Red 700 (Primary-ish)
                         '#10B981', // Emerald 500
-                        '#8B5CF6', // Violet 500
+                        '#3B82F6', // Blue 500
                         '#F59E0B', // Amber 500
-                        '#EF4444', // Red 500
-                        '#EC4899', // Pink 500
-                        '#6366F1', // Indigo 500
-                        '#14B8A6', // Teal 500
-                        '#F97316'  // Orange 500
+                        '#6366F1'  // Indigo 500
                     ];
 
                     if (brandData.labels.length > 0) {
-                        const chart = new Chart(ctx, {
+                        new Chart(ctxBrand, {
                             type: 'doughnut',
                             data: {
                                 labels: brandData.labels,
                                 datasets: [{
                                     data: brandData.data,
-                                    backgroundColor: colors,
+                                    backgroundColor: brandColors,
                                     borderWidth: 0,
-                                    hoverOffset: 10,
-                                    borderRadius: 4,
+                                    hoverOffset: 4,
                                     cutout: '85%'
                                 }]
                             },
@@ -320,15 +251,13 @@
                                 plugins: {
                                     legend: { display: false },
                                     tooltip: {
-                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                                        titleColor: '#1F2937',
-                                        bodyColor: '#4B5563',
-                                        borderColor: '#E5E7EB',
+                                        backgroundColor: '#fff',
+                                        titleColor: '#111',
+                                        bodyColor: '#666',
+                                        borderColor: '#eee',
                                         borderWidth: 1,
                                         padding: 10,
-                                        cornerRadius: 8,
                                         displayColors: true,
-                                        boxWidth: 8,
                                         callbacks: {
                                             label: function(context) {
                                                 const label = context.label || '';
@@ -338,33 +267,62 @@
                                             }
                                         }
                                     }
-                                },
-                                animation: { animateScale: true, animateRotate: true }
+                                }
                             }
                         });
-
-                        // Generate Custom Legend
-                        const legendContainer = document.getElementById('chartLegend');
-                        brandData.labels.forEach((label, index) => {
-                            const value = brandData.data[index];
-                            const percent = Math.round((value / totalItems) * 100);
-                            const color = colors[index % colors.length];
-                            
-                            const item = document.createElement('div');
-                            item.className = 'flex items-center justify-between p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors';
-                            item.innerHTML = `
-                                <div class="flex items-center gap-2">
-                                    <span class="w-2.5 h-2.5 rounded-full" style="background-color: ${color}"></span>
-                                    <span class="font-medium text-gray-700 truncate max-w-[80px]" title="${label}">${label}</span>
-                                </div>
-                                <div class="text-right">
-                                    <span class="font-bold text-gray-900 block">${value}</span>
-                                </div>
-                            `;
-                            legendContainer.appendChild(item);
-                        });
-
                     }
+
+                    // --- Bar Chart (Stock Performance - Mock Data) ---
+                    const ctxStock = document.getElementById('stockChart').getContext('2d');
+                    new Chart(ctxStock, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                            datasets: [
+                                {
+                                    label: 'In Stock',
+                                    data: [12, 19, 3, 5, 2, 3, 10],
+                                    backgroundColor: '#E5E7EB', // Gray 200
+                                    borderRadius: 4,
+                                    barThickness: 20
+                                },
+                                {
+                                    label: 'Sold',
+                                    data: [20, 25, 10, 15, 8, 12, 22],
+                                    backgroundColor: '#B91C1C', // Red 700
+                                    borderRadius: 4,
+                                    barThickness: 20
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: '#F3F4F6',
+                                        drawBorder: false
+                                    },
+                                    ticks: {
+                                        font: { size: 10 },
+                                        color: '#9CA3AF'
+                                    }
+                                },
+                                x: {
+                                    grid: { display: false },
+                                    ticks: {
+                                        font: { size: 10 },
+                                        color: '#9CA3AF'
+                                    }
+                                }
+                            }
+                        }
+                    });
                 });
             </script>
 

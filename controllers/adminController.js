@@ -4,6 +4,15 @@ const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 
+const slugify = (text) => {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+};
+
 exports.getLogin = (req, res, next) => {
     res.render('admin/login', {
         pageTitle: 'Admin Login',
@@ -154,9 +163,12 @@ exports.postAddLaptop = async (req, res, next) => {
         os: req.body.os
     };
 
+    const slug = slugify(`${brand}-${model}`);
+
     const laptop = new Laptop({
         brand: brand,
         model: model,
+        slug: slug,
         category: category,
         price: price,
         mrp: mrp,
@@ -213,9 +225,12 @@ exports.postAddMonitor = async (req, res, next) => {
         os: req.body.os // Some smart monitors might have OS
     };
 
+    const slug = slugify(`${brand}-${model}`);
+
     const laptop = new Laptop({ // Using Laptop model as generic Product model
         brand: brand,
         model: model,
+        slug: slug,
         category: category,
         price: price,
         mrp: mrp,
@@ -274,6 +289,7 @@ exports.postEditMonitor = async (req, res, next) => {
         const monitor = await Laptop.findById(monitorId); // Still using Laptop model
         if (!monitor) return res.redirect('/admin/dashboard');
 
+        monitor.slug = slugify(`${updatedBrand}-${updatedModel}`);
         monitor.brand = updatedBrand;
         monitor.model = updatedModel;
         monitor.price = updatedPrice;
@@ -371,6 +387,7 @@ exports.postEditLaptop = async (req, res, next) => {
 
     try {
         const laptop = await Laptop.findById(laptopId);
+        laptop.slug = slugify(`${updatedBrand}-${updatedModel}`);
         laptop.brand = updatedBrand;
         laptop.model = updatedModel;
         laptop.category = updatedCategory;
