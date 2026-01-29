@@ -1,0 +1,62 @@
+            <!-- Sidebar -->
+            <aside class="w-64 bg-white border-r border-gray-100 hidden md:flex flex-col z-20">
+                <!-- Logo -->
+                <div class="h-20 flex items-center px-8 border-b border-gray-50">
+                    <div class="flex items-center gap-2 text-primary">
+                        <i class="fas fa-cube text-2xl"></i>
+                        <span class="text-2xl font-bold tracking-tight text-gray-900">Dabang</span>
+                    </div>
+                </div>
+
+                <!-- Nav Links -->
+                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+                    <a href="/admin/dashboard" class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-lg shadow-primary/20 transition-all font-medium">
+                        <i class="fas fa-chart-pie w-5"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    
+                    <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-6 mb-2">Inventory</p>
+                    <a href="/admin/inventory" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-primary/5 hover:text-primary rounded-xl transition-all font-medium group">
+                        <i class="fas fa-box w-5 group-hover:text-primary"></i>
+                        <span>Products</span>
+                    </a>
+                    <a href="/admin/add-laptop" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-primary/5 hover:text-primary rounded-xl transition-all font-medium group">
+                        <i class="fas fa-plus-circle w-5 group-hover:text-primary"></i>
+                        <span>Add Product</span>
+                    </a>
+
+                    <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mt-6 mb-2">Management</p>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-primary/5 hover:text-primary rounded-xl transition-all font-medium group">
+                        <i class="fas fa-shopping-cart w-5 group-hover:text-primary"></i>
+                        <span>Order</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-primary/5 hover:text-primary rounded-xl transition-all font-medium group">
+                        <i class="fas fa-envelope w-5 group-hover:text-primary"></i>
+                        <span>Messages</span>
+                    </a>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:bg-primary/5 hover:text-primary rounded-xl transition-all font-medium group">
+                        <i class="fas fa-chart-bar w-5 group-hover:text-primary"></i>
+                        <span>Sales Report</span>
+                    </a>
+                </nav>
+
+                <!-- Bottom User / Logout -->
+                <div class="p-4 border-t border-gray-50">
+                    <div class="bg-primary rounded-2xl p-4 text-center text-white relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-2 opacity-10">
+                            <i class="fas fa-crown text-4xl transform rotate-12"></i>
+                        </div>
+                        <i class="fas fa-bolt text-2xl mb-2"></i>
+                        <h4 class="font-bold text-sm">Dabang Pro</h4>
+                        <p class="text-[10px] text-white/80 mb-3 opacity-90">Get access to all features</p>
+                        <button class="bg-white text-primary text-xs font-bold py-2 px-6 rounded-lg shadow-sm hover:bg-gray-50 transition-colors w-full">Get Pro</button>
+                    </div>
+                    
+                    <form action="/admin/logout" method="POST" class="mt-4">
+                        <button type="submit" class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-red-500 transition-colors w-full font-medium">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sign Out</span>
+                        </button>
+                    </form>
+                </div>
+            </aside>

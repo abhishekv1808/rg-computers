@@ -135,7 +135,7 @@
                                             <span class="font-bold text-blue-600 hover:underline">Click to upload</span>
                                             or drag and drop
                                         </p>
-                                        <p class="text-xs text-gray-400">SVG, PNG, JPG or WEBP (MAX. 5 files)</p>
+                                        <p class="text-xs text-gray-400">SVG, PNG, JPG or WEBP (MAX. 10 files)</p>
                                     </div>
                                     <input type="file" name="images" id="file-input" class="hidden" multiple
                                         accept="image/*" onchange="previewImages(event)">
@@ -352,13 +352,21 @@
 
             function handleFiles(files) {
                 if (files.length > 0) {
+                    // Dedupe logic first to find valid candidates
+                    const uniqueNewFiles = [];
                     Array.from(files).forEach(file => {
-                        // Dedupe based on name and size
                         const exists = Array.from(allFiles.files).some(f => f.name === file.name && f.size === file.size);
-                        if (!exists) {
-                            allFiles.items.add(file);
-                        }
+                        if (!exists) uniqueNewFiles.push(file);
                     });
+
+                    if (uniqueNewFiles.length === 0) return;
+
+                    if (allFiles.files.length + uniqueNewFiles.length > 10) {
+                         alert('You can only upload a maximum of 10 images.');
+                         return; // Do not add any if it exceeds limit
+                    }
+
+                    uniqueNewFiles.forEach(file => allFiles.items.add(file));
                     fileInput.files = allFiles.files;
                     generatePreview();
                 }

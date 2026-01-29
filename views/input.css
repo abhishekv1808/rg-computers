@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #064a65;
+  --color-primary-light: #0d8aeb; /* Example lighter shade or just keep it simple */
+  --color-primary-dark: #04354a;
+}
+
 @layer base {
     html {
         scroll-behavior: smooth;

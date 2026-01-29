@@ -216,110 +216,52 @@
                                         const discount = laptop.mrp - laptop.price;
                                         const discountPercent = Math.round((discount / laptop.mrp) * 100);
                                         %>
-                                        <div class="product-card bg-white border border-gray-100 rounded-xl p-4 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col relative group h-full"
+                                        <div class="product-card w-full"
                                             data-category="<%= categoryValue %>" data-brand="<%= laptop.brand %>"
                                             data-processor="<%= processorValue %>" data-price="<%= laptop.price %>">
-                                            <a href="/laptop/<%= laptop._id %>" class="absolute inset-0 z-10"></a>
-
-                                            <!-- Header Badges -->
-                                            <div class="flex justify-between items-start w-full relative z-10 mb-2">
-                                                <div
-                                                    class="bg-gray-900 text-white text-[10px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
-                                                    <i class="fas fa-check-circle text-cyan-400 text-[10px]"></i>
-                                                    <span>RG COMPUTERS ASSURED</span>
-                                                </div>
-                                                <% if(laptop.stockQuantity < 5 && laptop.stockQuantity> 0) { %>
-                                                    <div
-                                                        class="border border-red-500 text-red-500 text-[10px] font-bold px-2 py-0.5 rounded">
-                                                        <%= laptop.stockQuantity %> left
-                                                    </div>
-                                                    <% } %>
-                                            </div>
-
-                                            <!-- Image -->
-                                            <div
-                                                class="relative w-full h-48 mb-3 flex items-center justify-center bg-gray-50 rounded-lg p-4 overflow-hidden">
-                                                <% if (laptop.stockQuantity===0) { %>
-                                                    <div
-                                                        class="absolute top-3 left-1/2 -translate-x-1/2 bg-red-600/95 text-white text-sm font-bold px-4 py-1 rounded-md shadow-md -skew-x-6 transform pointer-events-none">
-                                                        Out of Stock
-                                                    </div>
-                                                    <% } %>
-                                                        <img src="<%= laptop.imageUrls[0] %>"
-                                                            alt="<%= laptop.brand %> <%= laptop.model %>"
-                                                            class="max-h-full max-w-full object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105">
-                                            </div>
-
-                                            <!-- Discount Tag -->
-                                            <div class="mb-2">
-                                                <span
-                                                    class="bg-green-100 text-green-700 text-xs font-extra-bold px-2 py-0.5 rounded">&#8377;
-                                                    <%= discount.toLocaleString('en-IN') %> OFF</span>
-                                            </div>
-
-                                            <!-- Title -->
-                                            <h3
-                                                class="font-bold text-gray-900 text-base leading-tight mb-2 line-clamp-2 min-h-[40px]">
-                                                <%= laptop.model %> (<%= laptop.specifications.processor %>)
-                                            </h3>
-
-                                            <!-- Specs -->
-                                            <div class="flex flex-wrap gap-2 mb-3">
-                                                <% if(laptop.specifications.processor) { %>
-                                                    <span
-                                                        class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                        <%= laptop.specifications.processor %>
-                                                    </span>
-                                                    <% } %>
-                                                        <% if(laptop.specifications.ram) { %>
-                                                            <span
-                                                                class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                <%= laptop.specifications.ram %>
+                                            <a href="/laptop/<%= laptop._id %>" class="group block bg-white rounded-3xl p-3 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 h-full">
+                                                <div class="bg-gray-50 rounded-2xl p-6 mb-4 relative overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                                                    <!-- Badges -->
+                                                    <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                                                        <% if (laptop.stockQuantity === 0) { %>
+                                                            <span class="bg-red-500 text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                                OUT OF STOCK
                                                             </span>
-                                                            <% } %>
-                                                                <% if(laptop.specifications.storage) { %>
-                                                                    <span
-                                                                        class="bg-gray-100 text-gray-600 text-xs font-medium px-2 py-1 rounded">
-                                                                        <%= laptop.specifications.storage %>
-                                                                    </span>
-                                                                    <% } %>
-                                            </div>
+                                                        <% } else { %>
+                                                            <span class="bg-white/90 backdrop-blur-sm text-black text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                                REFURBISHED
+                                                            </span>
+                                                        <% } %>
+                                                        <% if(laptop.stockQuantity < 5 && laptop.stockQuantity > 0) { %>
+                                                            <span class="bg-red-50 text-red-600 border border-red-100 text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                                                <%= laptop.stockQuantity %> Left
+                                                            </span>
+                                                        <% } %>
+                                                    </div>
 
-                                            <!-- Rating Section -->
-                                            <div class="flex items-center gap-2 mb-3">
-                                                <span
-                                                    class="bg-blue-900 text-white text-[10px] font-bold px-2 py-0.5 rounded">Certified</span>
-                                                <div
-                                                    class="border border-gray-200 px-1 py-0.5 rounded flex items-center gap-1">
-                                                    <span class="text-xs font-bold text-gray-700">5.0</span>
-                                                    <i class="fas fa-star text-yellow-400 text-[10px]"></i>
+                                                    <!-- Image -->
+                                                    <div class="aspect-[4/3] flex items-center justify-center">
+                                                        <img src="<%= laptop.imageUrls[0] %>" 
+                                                             alt="<%= laptop.model %>" 
+                                                             class="w-full h-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-110">
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!-- Price Section -->
-                                            <div class="mt-auto flex flex-col gap-1 pt-3 border-t border-gray-50 md:border-0 md:pt-0">
-                                                <div class="flex items-center gap-2">
-                                                    <span class="text-2xl font-bold text-gray-900 tracking-tight">&#8377;<%=
-                                                            laptop.price.toLocaleString('en-IN') %></span>
-                                                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
-                                                        -<%= discountPercent %>%
-                                                    </span>
+                                                <div class="px-2">
+                                                    <h3 class="font-bold text-gray-900 mb-1 leading-tight group-hover:text-cyan-700 transition-colors line-clamp-2 h-10">
+                                                        <%= laptop.model %>
+                                                    </h3>
+                                                    <p class="text-sm text-gray-400 mb-3 truncate">
+                                                        <%= laptop.specifications.processor %> / <%= laptop.specifications.ram %> / <%= laptop.specifications.storage %>
+                                                    </p>
+                                                    
+                                                    <div class="flex items-baseline gap-3">
+                                                        <span class="text-lg font-bold text-gray-900">₹<%= laptop.price.toLocaleString('en-IN') %></span>
+                                                        <span class="text-xs text-gray-400 line-through">₹<%= laptop.mrp.toLocaleString('en-IN') %></span>
+                                                        <span class="text-xs font-bold text-green-600"><%= discountPercent %>% OFF</span>
+                                                    </div>
                                                 </div>
-                                                <span
-                                                    class="text-sm text-gray-400 line-through decoration-gray-400">MRP: &#8377;
-                                                    <%= laptop.mrp.toLocaleString('en-IN') %>
-                                                </span>
-                                            </div>
-
-                                            <form action="/cart" method="POST"
-                                                class="absolute bottom-4 right-4 z-20 transition-opacity duration-300">
-                                                <input type="hidden" name="productId" value="<%= laptop._id %>">
-                                                <button type="submit"
-                                                    class="w-10 h-10 rounded-full bg-cyan-500 text-white flex items-center justify-center hover:bg-cyan-600 shadow-lg hover:scale-110 transition-all"
-                                                    title="Add to Cart">
-                                                    <i class="fas fa-cart-plus"></i>
-                                                </button>
-                                            </form>
+                                            </a>
                                         </div>
                                         <% }) %>
                                             <% } else { %>

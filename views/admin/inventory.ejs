@@ -1,233 +1,275 @@
 ﻿<%- include('../partials/head.ejs') %>
 
-    <body class="bg-gray-50 text-gray-600">
+    <body class="bg-[#F3F4F6] font-[Urbanist] text-gray-700">
 
-        <!-- Top Navigation -->
-        <!-- Top Navigation -->
-        <%- include('../partials/admin-navbar.ejs') %>
+        <div class="flex h-screen overflow-hidden">
+            <!-- Sidebar -->
+            <%- include('../partials/admin-sidebar-new.ejs') %>
 
-        <div class="max-w-7xl mx-auto px-6 py-8">
+            <!-- Main Content Wrapper -->
+            <div class="flex-1 flex flex-col h-screen overflow-hidden relative">
+                
+                <!-- Top Header -->
+                <%- include('../partials/admin-header-new.ejs') %>
 
-            <!-- Page Header -->
-            <div class="mb-8">
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div>
-                        <h1 class="text-2xl font-bold text-gray-900">Inventory Management</h1>
-                        <p class="text-sm text-gray-500 mt-1">Manage your product stock levels and catalog.</p>
-                    </div>
-                    <a href="/admin/add-laptop"
-                        class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-sm transition-all shadow-blue-200">
-                        <i class="fas fa-plus mr-2"></i> Add Product
-                    </a>
-                </div>
-            </div>
-
-            <!-- Inventory Table -->
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                <div
-                    class="p-5 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gray-50/30">
-                    <div class="flex items-center gap-2">
-                        <h2 class="text-base font-semibold text-gray-900">Products</h2>
-                        <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-600 text-xs font-medium">
-                            <%= totalLaptops %> Total
-                        </span>
-                    </div>
-                    <div class="flex gap-3 w-full sm:w-auto">
-                        <div class="relative w-full sm:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <i class="fas fa-search text-gray-400 text-xs"></i>
+                <!-- Scrollable Main -->
+                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-[#FAFBFD] p-6 md:p-8">
+                    
+                    <div class="max-w-7xl mx-auto">
+                        
+                        <!-- Stats Grid (Unified Style) -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                            <!-- Out of Stock -->
+                            <div class="bg-white border border-gray-100 rounded-3xl p-6 flex items-center justify-between transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md group">
+                                <div>
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                        <i class="fas fa-times-circle text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900"><%= stats.outOfStock %></h3>
+                                    <p class="text-xs font-semibold text-gray-500 mt-1">Out of Stock</p>
+                                    <p class="text-[10px] text-red-500 mt-1 font-bold">Restock needed</p>
+                                </div>
                             </div>
-                            <input type="text" placeholder="Search by name, SKU..."
-                                class="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full transition-all shadow-sm">
+                            
+                            <!-- Low Stock -->
+                            <div class="bg-white border border-gray-100 rounded-3xl p-6 flex items-center justify-between transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md group">
+                                <div>
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                        <i class="fas fa-exclamation-triangle text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900"><%= stats.lowStock %></h3>
+                                    <p class="text-xs font-semibold text-gray-500 mt-1">Low Stock</p>
+                                    <p class="text-[10px] text-orange-500 mt-1 font-bold">Order soon</p>
+                                </div>
+                            </div>
+
+                            <!-- Inventory Value -->
+                            <div class="bg-white border border-gray-100 rounded-3xl p-6 flex items-center justify-between transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md group">
+                                <div>
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                        <i class="fas fa-rupee-sign text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900">₹<%= (stats.totalValue / 1000).toFixed(1) %>k</h3>
+                                    <p class="text-xs font-semibold text-gray-500 mt-1">Total Value</p>
+                                    <p class="text-[10px] text-green-500 mt-1 font-bold">Current Assets</p>
+                                </div>
+                            </div>
+
+                            <!-- Total Products -->
+                            <div class="bg-white border border-gray-100 rounded-3xl p-6 flex items-center justify-between transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md group">
+                                <div>
+                                    <div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                        <i class="fas fa-box text-xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900"><%= stats.totalLaptops %></h3>
+                                    <p class="text-xs font-semibold text-gray-500 mt-1">Total Products</p>
+                                    <p class="text-[10px] text-primary mt-1 font-bold">Active Inventory</p>
+                                </div>
+                            </div>
                         </div>
-                        <button
-                            class="px-3 py-2 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-                            <i class="fas fa-filter"></i>
-                        </button>
-                    </div>
-                </div>
 
-                <div class="overflow-x-auto">
-                    <table class="w-full whitespace-nowrap text-left">
-                        <thead>
-                            <tr class="bg-gray-50/50 border-b border-gray-100">
-                                <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                                    Product Info</th>
-                                <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-40">
-                                    Stock</th>
-                                <th class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider w-48">
-                                    Availability</th>
-                                <th
-                                    class="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right w-32">
-                                    Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50">
-                            <% if (laptops.length> 0) { %>
-                                <% laptops.forEach(laptop=> { %>
-                                    <tr class="group hover:bg-gray-50/50 transition-colors">
-                                        <td class="px-6 py-3">
-                                            <div class="flex items-center">
-                                                <div class="h-12 w-12 flex-shrink-0 relative">
-                                                    <% const displayImage=(laptop.imageUrls && laptop.imageUrls.length>
-                                                        0) ? laptop.imageUrls[0] : (laptop.imageUrl ||
-                                                        'https://via.placeholder.com/150'); %>
-                                                        <img class="h-12 w-12 rounded-lg object-contain border border-gray-200 bg-white p-1"
-                                                            src="<%= displayImage %>" alt="">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div
-                                                        class="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
-                                                        <%= laptop.brand %>
-                                                            <%= laptop.model %>
-                                                    </div>
-                                                    <div class="flex items-center gap-2 mt-1">
-                                                        <% if (laptop.category) { %>
-                                                            <span
-                                                                class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                                                                <%= laptop.category %>
-                                                            </span>
-                                                            <% } %>
-                                                                <div class="text-xs text-gray-500 font-mono">
-                                                                    <%= laptop._id %>
+                         <!-- Page Header & Action -->
+                        <div class="mb-8 flex items-center justify-between">
+                            <div>
+                                <h2 class="text-2xl font-bold text-gray-900">Inventory Items</h2>
+                                <p class="text-xs text-gray-500 mt-1 uppercase tracking-wide">Detailed view of all products</p>
+                            </div>
+                             <a href="/admin/add-laptop"
+                                class="inline-flex items-center justify-center px-6 py-2.5 bg-blue-900 text-white text-sm font-bold rounded-xl hover:bg-blue-800 focus:ring-2 focus:ring-offset-2 focus:ring-blue-900 shadow-lg shadow-blue-200 transition-all uppercase tracking-wide">
+                                <i class="fas fa-plus mr-2"></i> Add Product
+                            </a>
+                        </div>
+
+                        <!-- Inventory Table -->
+                        <div class="bg-white rounded-[32px] shadow-xl shadow-gray-200/50 border border-white/50 overflow-hidden flex flex-col">
+                            
+                            <!-- Table Header -->
+                            <div class="p-8 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-6 bg-white">
+                                <div class="flex items-center gap-3">
+                                    <h2 class="text-xl font-bold text-gray-900 tracking-tight">Products</h2>
+                                    <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold ring-1 ring-inset ring-primary/20">
+                                        <%= totalLaptops %> Total
+                                    </span>
+                                </div>
+                                <div class="flex gap-3 w-full sm:w-auto">
+                                    <form action="/admin/inventory" method="GET" class="relative w-full sm:w-72 group">
+                                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400 group-hover:text-primary transition-colors text-sm"></i>
+                                        </div>
+                                        <input type="text" name="search" placeholder="Search inventory..."
+                                            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+                                            class="pl-11 pr-4 py-3 border border-gray-200 rounded-2xl text-sm bg-gray-50/50 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary/20 focus:bg-white w-full transition-all shadow-sm group-hover:bg-white font-medium text-gray-700">
+                                    </form>
+                                    <button class="px-4 py-3 border border-gray-200 rounded-2xl text-gray-500 hover:bg-gray-50 hover:text-primary hover:border-primary/20 transition-all shadow-sm">
+                                        <i class="fas fa-filter"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full whitespace-nowrap text-left">
+                                    <thead>
+                                        <tr class="bg-gray-50/50 border-b border-gray-100">
+                                            <th class="px-8 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest">Product Info</th>
+                                            <th class="px-6 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest w-40">Stock</th>
+                                            <th class="px-6 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest w-48">Availability</th>
+                                            <th class="px-8 py-5 text-[11px] font-bold text-gray-400 uppercase tracking-widest text-right w-40">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100">
+                                        <% if (laptops.length > 0) { %>
+                                            <% laptops.forEach(laptop => { %>
+                                                <tr class="group hover:bg-primary/[0.02] transition-colors">
+                                                    <td class="px-8 py-5">
+                                                        <div class="flex items-center gap-4">
+                                                            <div class="h-14 w-14 flex-shrink-0 relative">
+                                                                <% const displayImage = (laptop.imageUrls && laptop.imageUrls.length > 0) ? laptop.imageUrls[0] : (laptop.imageUrl || 'https://via.placeholder.com/150'); %>
+                                                                <img class="h-14 w-14 rounded-xl object-contain border border-gray-100 bg-white p-1" src="<%= displayImage %>" alt="">
+                                                            </div>
+                                                            <div class="flex flex-col justify-center">
+                                                                <div class="text-sm font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-1"><%= laptop.brand %> <%= laptop.model %></div>
+                                                                <div class="flex items-center gap-2 mt-1">
+                                                                    <% if (laptop.category) { %>
+                                                                        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 text-gray-500 uppercase tracking-wide border border-gray-200">
+                                                                            <%= laptop.category %>
+                                                                        </span>
+                                                                    <% } %>
+                                                                    <span class="text-[10px] text-gray-400 font-mono tracking-wider uppercase">#<%= laptop._id.toString().slice(-6) %></span>
                                                                 </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
-                                        <!-- Editable Form Row -->
-                                        <form action="/admin/update-inventory" method="POST">
-                                            <input type="hidden" name="laptopId" value="<%= laptop._id %>">
+                                                    <!-- Editable Form Row -->
+                                                    <form action="/admin/update-inventory" method="POST">
+                                                        <input type="hidden" name="laptopId" value="<%= laptop._id %>">
 
-                                            <td class="px-6 py-3">
-                                                <div class="flex items-center gap-2">
-                                                    <input type="number" name="stockQuantity"
-                                                        value="<%= laptop.stockQuantity %>" min="0"
-                                                        class="w-20 px-2 py-1.5 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-shadow">
-                                                </div>
-                                            </td>
+                                                        <td class="px-6 py-5">
+                                                            <div class="flex items-center">
+                                                                <input type="number" name="stockQuantity"
+                                                                    value="<%= laptop.stockQuantity %>" min="0"
+                                                                    class="w-24 px-3 py-2 border border-gray-200 rounded-xl text-sm font-bold text-gray-700 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary/30 transition-shadow text-center bg-gray-50/50 focus:bg-white">
+                                                            </div>
+                                                        </td>
 
-                                            <td class="px-6 py-3">
-                                                <select name="status"
-                                                    class="w-full px-2 py-1.5 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white cursor-pointer hover:border-blue-300 transition-colors">
-                                                    <option value="In Stock" <%=laptop.status==='In Stock' ? 'selected'
-                                                        : '' %>>In Stock</option>
-                                                    <option value="Low Stock" <%=laptop.status==='Low Stock'
-                                                        ? 'selected' : '' %>>Low Stock</option>
-                                                    <option value="Out of Stock" <%=laptop.status==='Out of Stock'
-                                                        ? 'selected' : '' %>>Out of Stock</option>
-                                                    <option value="Discontinued" <%=laptop.status==='Discontinued'
-                                                        ? 'selected' : '' %>>Discontinued</option>
-                                                </select>
-                                            </td>
+                                                        <td class="px-6 py-5">
+                                                            <div class="relative">
+                                                                <select name="status"
+                                                                    class="w-full pl-3 pr-8 py-2 border border-gray-200 rounded-xl text-xs font-bold text-gray-600 focus:outline-none focus:ring-4 focus:ring-primary/10 focus:border-primary/30 bg-gray-50/50 focus:bg-white cursor-pointer hover:border-primary/30 transition-all appearance-none">
+                                                                    <option value="In Stock" <%= laptop.status === 'In Stock' ? 'selected' : '' %>>In Stock</option>
+                                                                    <option value="Low Stock" <%= laptop.status === 'Low Stock' ? 'selected' : '' %>>Low Stock</option>
+                                                                    <option value="Out of Stock" <%= laptop.status === 'Out of Stock' ? 'selected' : '' %>>Out of Stock</option>
+                                                                    <option value="Discontinued" <%= laptop.status === 'Discontinued' ? 'selected' : '' %>>Discontinued</option>
+                                                                </select>
+                                                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-400">
+                                                                    <i class="fas fa-chevron-down text-[10px]"></i>
+                                                                </div>
+                                                            </div>
+                                                        </td>
 
-                                            <td class="px-6 py-3 text-right">
-                                                <div class="flex items-center justify-end gap-2">
-                                                    <!-- View -->
-                                                    <button type="button" data-laptop="<%= JSON.stringify(laptop) %>"
-                                                        onclick="openModal(this)"
-                                                        class="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg border border-transparent hover:border-indigo-100 transition-all"
-                                                        title="Quick View">
-                                                        <i class="fas fa-eye text-sm"></i>
-                                                    </button>
+                                                        <td class="px-8 py-5 text-right">
+                                                            <div class="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                                                <!-- View -->
+                                                                <button type="button" data-laptop="<%= JSON.stringify(laptop) %>"
+                                                                    onclick="openModal(this)"
+                                                                    class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
+                                                                     title="Quick View">
+                                                                    <i class="fas fa-eye text-xs"></i>
+                                                                </button>
 
-                                                    <!-- Edit -->
-                                                    <a href="/admin/edit-laptop/<%= laptop._id %>?edit=true"
-                                                        class="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg border border-transparent hover:border-blue-100 transition-all"
-                                                        title="Edit Product">
-                                                        <i class="fas fa-pen text-xs"></i>
-                                                    </a>
+                                                                <!-- Save Changes (Primary Action) -->
+                                                                <button type="submit" formaction="/admin/update-inventory"
+                                                                    class="w-9 h-9 flex items-center justify-center text-emerald-600 bg-emerald-50 hover:bg-emerald-500 hover:text-white rounded-lg border border-emerald-100/50 hover:border-transparent transition-all shadow-sm"
+                                                                    title="Save Changes">
+                                                                    <i class="fas fa-check text-xs font-bold"></i>
+                                                                </button>
 
-                                                    <!-- Update Button (Icon) -->
-                                                    <button type="submit" formaction="/admin/update-inventory"
-                                                        class="h-8 w-8 flex items-center justify-center text-cyan-600 bg-cyan-50 hover:bg-cyan-100 hover:text-cyan-700 rounded-lg border border-cyan-200 transition-all shadow-sm"
-                                                        title="Save Stock Changes">
-                                                        <i class="fas fa-check text-sm font-bold"></i>
-                                                    </button>
+                                                                <!-- Edit -->
+                                                                <a href="/admin/edit-laptop/<%= laptop._id %>?edit=true"
+                                                                    class="w-9 h-9 flex items-center justify-center text-primary bg-primary/5 hover:bg-primary hover:text-white rounded-lg border border-primary/10 hover:border-transparent transition-all"
+                                                                    title="Edit Product">
+                                                                    <i class="fas fa-pen text-xs"></i>
+                                                                </a>
 
-                                                    <!-- Delete -->
-                                                    <button type="submit" formaction="/admin/delete-laptop"
-                                                        onclick="return confirm('Are you sure you want to delete this laptop? This action cannot be undone.')"
-                                                        class="h-8 w-8 flex items-center justify-center text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg border border-transparent hover:border-red-100 transition-all"
-                                                        title="Delete Product">
-                                                        <i class="fas fa-trash text-xs"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </form>
-                                    </tr>
-                                    <% }) %>
+                                                                <!-- Delete -->
+                                                                <button type="submit" formaction="/admin/delete-laptop"
+                                                                    onclick="return confirm('Are you sure you want to delete this laptop? This action cannot be undone.')"
+                                                                    class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-white hover:bg-red-500 rounded-lg transition-all"
+                                                                    title="Delete Product">
+                                                                    <i class="fas fa-trash text-xs"></i>
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </form>
+                                                </tr>
+                                            <% }) %>
                                         <% } else { %>
                                             <tr>
-                                                <td colspan="4" class="px-6 py-24 text-center">
+                                                <td colspan="4" class="px-8 py-24 text-center">
                                                     <div class="flex flex-col items-center justify-center">
-                                                        <div
-                                                            class="h-16 w-16 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100 mb-4">
-                                                            <i class="fas fa-box-open text-gray-300 text-2xl"></i>
+                                                        <div class="h-20 w-20 bg-gray-50 rounded-full flex items-center justify-center border border-gray-100 mb-6">
+                                                            <i class="fas fa-box-open text-gray-300 text-3xl"></i>
                                                         </div>
-                                                        <h3 class="text-sm font-medium text-gray-900">No products found
-                                                        </h3>
-                                                        <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto">Get
-                                                            started by adding a new product to your inventory.</p>
-                                                        <a href="/admin/add-laptop"
-                                                            class="mt-4 text-sm text-blue-600 hover:text-blue-800 font-medium">Add
-                                                            Product</a>
+                                                        <h3 class="text-gray-900 font-bold text-lg mb-2">No products found</h3>
+                                                        <p class="text-gray-500 text-sm max-w-sm mx-auto mb-6">We couldn't find any products matching your search. Try adjusting filters or add a new product.</p>
+                                                        <a href="/admin/add-laptop" class="px-6 py-3 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                                                            <i class="fas fa-plus mr-2"></i> Add Product
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-
-                <% if (totalLaptops > 0) { %>
-                    <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div class="text-xs text-gray-500 flex flex-col gap-1">
-                            <div>
-                                <i class="fas fa-info-circle mr-1 text-blue-500"></i>
-                                Changes to stock or status must be saved by clicking the checkmark icon.
+                                        <% } %>
+                                    </tbody>
+                                </table>
                             </div>
-                           <div>
-                                Showing <span class="font-medium"><%= (currentPage - 1) * 10 + 1 %></span> 
-                                to <span class="font-medium"><%= Math.min(currentPage * 10, totalLaptops) %></span> 
-                                of <span class="font-medium"><%= totalLaptops %></span> items
-                           </div>
+
+                            <% if (totalLaptops > 0) { %>
+                                <div class="px-8 py-6 border-t border-gray-100 bg-gray-50/30 flex flex-col md:flex-row items-center justify-between gap-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                                            <i class="fas fa-info text-xs"></i>
+                                        </div>
+                                        <p class="text-xs text-gray-500 font-medium">
+                                            Make sure to click the <span class="text-emerald-600 font-bold"><i class="fas fa-check"></i> checkmark</span> to save stock changes.
+                                        </p>
+                                    </div>
+
+                                     <div class="flex items-center gap-2">
+                                         <% if (hasPreviousPage) { %>
+                                             <a href="/admin/inventory?page=<%= previousPage %>" 
+                                                class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-600 hover:bg-white hover:border-primary hover:text-primary transition-all shadow-sm bg-white" title="Previous">
+                                                 <i class="fas fa-chevron-left text-xs"></i>
+                                             </a>
+                                         <% } else { %>
+                                             <button disabled 
+                                                 class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
+                                                 <i class="fas fa-chevron-left text-xs"></i>
+                                             </button>
+                                         <% } %>
+
+                                         <div class="px-4 h-10 flex items-center justify-center bg-white rounded-xl border border-gray-200 shadow-sm">
+                                             <span class="text-xs font-bold text-gray-700">Page <%= currentPage %> of <%= lastPage %></span>
+                                         </div>
+
+                                         <% if (hasNextPage) { %>
+                                             <a href="/admin/inventory?page=<%= nextPage %>" 
+                                                class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-200 text-gray-600 hover:bg-white hover:border-primary hover:text-primary transition-all shadow-sm bg-white" title="Next">
+                                                 <i class="fas fa-chevron-right text-xs"></i>
+                                             </a>
+                                         <% } else { %>
+                                             <button disabled 
+                                                 class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-100 text-gray-300 bg-gray-50 cursor-not-allowed">
+                                                 <i class="fas fa-chevron-right text-xs"></i>
+                                             </button>
+                                         <% } %>
+                                     </div>
+                                </div>
+                            <% } %>
                         </div>
 
-                         <div class="flex gap-2">
-                             <% if (hasPreviousPage) { %>
-                                 <a href="/admin/inventory?page=<%= previousPage %>" 
-                                    class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-white hover:shadow-sm transition-all" title="Previous">
-                                     <i class="fas fa-chevron-left"></i>
-                                 </a>
-                             <% } else { %>
-                                 <button disabled 
-                                     class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
-                                     <i class="fas fa-chevron-left"></i>
-                                 </button>
-                             <% } %>
-
-                             <div class="flex items-center px-2">
-                                 <span class="text-sm font-medium text-gray-700">Page <%= currentPage %> of <%= lastPage %></span>
-                             </div>
-
-                             <% if (hasNextPage) { %>
-                                 <a href="/admin/inventory?page=<%= nextPage %>" 
-                                    class="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-white hover:shadow-sm transition-all" title="Next">
-                                     <i class="fas fa-chevron-right"></i>
-                                 </a>
-                             <% } else { %>
-                                 <button disabled 
-                                     class="p-2 rounded-lg border border-gray-100 text-gray-300 cursor-not-allowed">
-                                     <i class="fas fa-chevron-right"></i>
-                                 </button>
-                             <% } %>
-                         </div>
                     </div>
-                    <% } %>
+                </main>
             </div>
-
         </div>
 
         <%- include('./inventory-modal.ejs') %>

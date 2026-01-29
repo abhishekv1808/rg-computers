@@ -71,8 +71,12 @@ exports.getDashboard = async (req, res, next) => {
         const recentLaptops = await Laptop.find().sort({ createdAt: -1 }).limit(5); // Separate query for recent items widget
 
         // Calculate total inventory value (using aggregation for efficiency over entire dataset)
-        const allLaptopsForStats = await Laptop.find({}, 'price stockQuantity brand');
+        const allLaptopsForStats = await Laptop.find({}, 'price stockQuantity brand status');
         const totalValue = allLaptopsForStats.reduce((acc, curr) => acc + (curr.price * curr.stockQuantity), 0);
+
+        // Stats Calculation
+        const outOfStock = allLaptopsForStats.filter(l => l.status === 'Out of Stock').length;
+        const lowStock = allLaptopsForStats.filter(l => l.status === 'Low Stock').length;
 
         // Calculate unique brands
         const uniqueBrands = [...new Set(allLaptopsForStats.map(l => l.brand))].length;
@@ -95,6 +99,8 @@ exports.getDashboard = async (req, res, next) => {
             totalLaptops: totalLaptops,
             recentLaptops: recentLaptops,
             totalValue: totalValue,
+            outOfStock: outOfStock,
+            lowStock: lowStock,
             uniqueBrands: uniqueBrands,
             brandData: brandData, // Pass chart data
             path: '/admin/dashboard',
@@ -401,11 +407,31 @@ exports.getInventory = async (req, res, next) => {
         const page = +req.query.page || 1;
         const ITEMS_PER_PAGE = 10;
 
-        const totalLaptops = await Laptop.countDocuments();
-        const laptops = await Laptop.find()
+        const searchQuery = req.query.search;
+        let filter = {};
+        if (searchQuery) {
+            filter = {
+                $or: [
+                    { brand: { $regex: searchQuery, $options: 'i' } },
+                    { model: { $regex: searchQuery, $options: 'i' } },
+                    { category: { $regex: searchQuery, $options: 'i' } }
+                ]
+            };
+        }
+
+        const totalLaptops = await Laptop.countDocuments(filter);
+        const laptops = await Laptop.find(filter)
             .sort({ brand: 1 })
             .skip((page - 1) * ITEMS_PER_PAGE)
             .limit(ITEMS_PER_PAGE);
+
+        // Stats Calculation
+        const outOfStock = await Laptop.countDocuments({ status: 'Out of Stock' });
+        const lowStock = await Laptop.countDocuments({ status: 'Low Stock' });
+
+        // Calculate total value
+        const allLaptops = await Laptop.find({}, 'price stockQuantity');
+        const totalValue = allLaptops.reduce((acc, curr) => acc + (curr.price * curr.stockQuantity), 0);
 
         res.render('admin/inventory', {
             pageTitle: 'Inventory Management',
@@ -417,7 +443,22 @@ exports.getInventory = async (req, res, next) => {
             nextPage: page + 1,
             previousPage: page - 1,
             lastPage: Math.ceil(totalLaptops / ITEMS_PER_PAGE),
-            totalLaptops: totalLaptops // Pass total count for UI
+
+            // Stats passed to view
+            stats: {
+                totalLaptops: totalLaptops,
+                outOfStock: outOfStock,
+                lowStock: lowStock,
+                totalValue: totalValue
+            },
+            stats: {
+                totalLaptops: totalLaptops,
+                outOfStock: outOfStock,
+                lowStock: lowStock,
+                totalValue: totalValue
+            },
+            totalLaptops: totalLaptops,
+            searchQuery: searchQuery // Pass search query to view
         });
     } catch (err) {
         console.log(err);
